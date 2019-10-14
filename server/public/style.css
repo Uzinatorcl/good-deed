@@ -1,0 +1,62 @@
+body {
+  background-color: #a9fbc3;
+   font-family: 'DecovarRegular24TermA';
+   font-weight: normal;
+   font-style: normal;
+}
+button {
+  background-color: #0ec088;
+font-size: 40px;
+color: white;
+border-radius: 29px;
+width: 189px;
+height: 77px;
+border-style: none;
+cursor: pointer;
+}
+.loginHeader {
+  margin-top: 55px;
+  color: white;
+}
+.loginHeader > h1 {
+  font-size: 400%;
+  line-height: 79px;
+}
+.loginContainer {
+  text-align: center;
+}
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.buttonContainer > * {
+  margin-top: 20px;
+}
+.dailyQuote {
+  font-size: 150%;
+}
+.loginForm {
+  background-color: #0ec088;
+  border-radius: 25px;
+}
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.loginFormBox {
+  text-align: center;
+  border-radius: 55px;
+border-style: none;
+width: 243px;
+height: 61px;
+background-color: #C4C4C4;
+color: white;
+font-size: 40px;
+margin: 20px;
+}
