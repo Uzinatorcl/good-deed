@@ -14,6 +14,9 @@ height: 77px;
 border-style: none;
 cursor: pointer;
 }
+.container {
+  padding: 0
+}
 .loginHeader {
   margin-top: 55px;
   color: white;
@@ -59,4 +62,48 @@ background-color: #C4C4C4;
 color: white;
 font-size: 40px;
 margin: 20px;
+}
+.mainHeader {
+  background-color: #0ec088;
+  width: 375px;
+  height: 85px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mainHeader > * {
+  text-align: center;
+  font-size: 48px;
+  color: white;
+}
+.userProfile {
+  width: 328px;
+  height: 106px;
+  margin: 10px 23px 10px;
+  border-radius: 25px;
+  background-color: #0ec088;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.userInfo {
+  text-align: center;
+  font-family: 'Asap', sans-serif;
+  line-height: 24px;
+}
+.userName {
+  font-size: 32px;
+}
+.totalReviews {
+  font-size: 18px;
+  color: white;
+}
+.userImage {
+  width: 58px;
+}
+.heading {
+  color: white;
+  text-align: center;
+  font-size: 24px;
 }

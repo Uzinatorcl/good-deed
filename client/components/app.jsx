@@ -15,6 +15,10 @@ class App extends React.Component {
   setView(newView) {
     this.setState({ view: newView });
   }
+  getReviewData() {
+
+  }
+
   getUserData(userDataToGet) {
     fetch('/api/login.php', {
       method: 'POST',
