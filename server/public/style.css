@@ -14,6 +14,9 @@ height: 77px;
 border-style: none;
 cursor: pointer;
 }
+.container {
+  padding: 0
+}
 .loginHeader {
   margin-top: 55px;
   color: white;
@@ -59,4 +62,129 @@ background-color: #C4C4C4;
 color: white;
 font-size: 40px;
 margin: 20px;
+}
+.mainHeader {
+  background-color: #0ec088;
+  width: 375px;
+  height: 85px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mainHeader > * {
+  text-align: center;
+  font-size: 48px;
+  color: white;
+}
+.userProfile {
+  width: 328px;
+  height: 106px;
+  margin: 10px 23px 10px;
+  border-radius: 25px;
+  background-color: #0ec088;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.userInfo {
+  text-align: center;
+  font-family: 'Asap', sans-serif;
+  line-height: 24px;
+}
+.userName {
+  font-size: 32px;
+}
+.totalReviews {
+  font-size: 18px;
+  color: white;
+}
+.userImage {
+  width: 58px;
+}
+.heading {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+.reviewsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0ec088;
+  border-radius: 25px;
+  height: 472px;
+  overflow: auto;
+}
+.reviewersProfile {
+  width: 291px;
+  height: 76px;
+  background-color: #D5DDDA;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 0;
+}
+.reviewerImage {
+  width: 44px;
+}
+.reviewerInfo {
+  text-align: center;
+  font-family: 'Asap', sans-serif;
+  line-height: 24px;
+}
+.ratingImage {
+  height: 28px;
+}
+.reviewerUsername {
+  font-size: 28px;
+}
+.categoryName {
+  font-size: 18px;
+  color: black;
+  text-transform: uppercase;
+}
+.dashboardNavi {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px
+}
+.leftArrow, .rightArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 57px;
+  width: 57px;
+  font-size: 57px;
+  color: #0ec088;
+}
+.categoryList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.category {
+  color: white;
+  background-color: #0ec088;
+  font-size: 32px;
+  margin: 5px 0;
+  border-radius: 25px;
+  width: 90%;
+}
+.mainFooter {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 7vh;
+  background-color: #0ec088;
+  color: white;
+  text-align: center;
+  font-size: 36px;
+}
+.hidden {
+  visibility: hidden;
 }

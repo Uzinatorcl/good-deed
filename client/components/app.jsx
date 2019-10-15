@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './login';
 import Dashboard from './dashboard';
+import Commit from './commit';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends React.Component {
   setView(newView) {
     this.setState({ view: newView });
   }
+
   getUserData(userDataToGet) {
     fetch('/api/login.php', {
       method: 'POST',
@@ -37,7 +39,10 @@ class App extends React.Component {
       return <Login getUserData={this.getUserData} />;
     }
     if (this.state.view === 'dashboard') {
-      return <Dashboard userData ={this.state.userData}/>;
+      return <Dashboard userData ={this.state.userData} setView={this.setView}/>;
+    }
+    if (this.state.view === 'commit') {
+      return <Commit userData={this.state.userData} setView={this.setView} />;
     }
   }
 
