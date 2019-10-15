@@ -145,3 +145,22 @@ margin: 20px;
   color: black;
   text-transform: uppercase;
 }
+.dashboardNavi {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px
+}
+.leftArrow, .rightArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 57px;
+  width: 57px;
+  font-size: 57px;
+  color: #0ec088;
+}
+.hidden {
+  visibility: hidden;
+}

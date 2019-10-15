@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import Review from './reviews';
+import DashFooter from './dash-footer';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -70,6 +71,7 @@ class Dashboard extends React.Component {
             {reviewsToDisplay}
           </div>
         </div>
+        <DashFooter/>
       </div>
     );
   }
