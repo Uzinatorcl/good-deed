@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
           <div className="heading">
           YOUR RECENT REVIEWS
           </div>
-          <div className="reviewsContainer">
+          <div className="reviewsContainer mx-auto">
             {reviewsToDisplay}
           </div>
         </div>
