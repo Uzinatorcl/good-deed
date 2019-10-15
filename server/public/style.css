@@ -161,6 +161,30 @@ margin: 20px;
   font-size: 57px;
   color: #0ec088;
 }
+.categoryList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.category {
+  color: white;
+  background-color: #0ec088;
+  font-size: 32px;
+  margin: 5px 0;
+  border-radius: 25px;
+  width: 90%;
+}
+.mainFooter {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 7vh;
+  background-color: #0ec088;
+  color: white;
+  text-align: center;
+  font-size: 36px;
+}
 .hidden {
   visibility: hidden;
 }

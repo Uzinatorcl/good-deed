@@ -44,8 +44,6 @@ class Dashboard extends React.Component {
     const reviewStars = this.getReviewStars();
     const totalReviews = this.state.userReviews.length;
     const reviewsToDisplay = this.displayReviews();
-    console.log(this.props.userData);
-    console.log(reviewStars);
     return (
       <div className="container">
         <Header/>
@@ -71,7 +69,7 @@ class Dashboard extends React.Component {
             {reviewsToDisplay}
           </div>
         </div>
-        <DashFooter/>
+        <DashFooter setView={this.props.setView}/>
       </div>
     );
   }

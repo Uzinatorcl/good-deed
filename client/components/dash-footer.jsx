@@ -10,6 +10,7 @@ class DashFooter extends React.Component {
     };
     this.navigateLeft = this.navigateLeft.bind(this);
     this.navigateRight = this.navigateRight.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
   navigateLeft() {
     switch (this.state.button) {
@@ -48,12 +49,15 @@ class DashFooter extends React.Component {
     if (this.state.isRightArrowHidden) return ['', 'hidden'];
     return ['', ''];
   }
+  changeView() {
+    this.props.setView(this.state.button.toLowerCase());
+  }
   render() {
     const arrowToHide = this.arrowHide();
     return (
       <footer className="dashboardNavi">
         <div onClick={this.navigateLeft} className={`leftArrow fas fa-arrow-circle-left ${arrowToHide[0]}`}></div>
-        <button className="dashboardNaviButton">{this.state.button}</button>
+        <button onClick={this.changeView} className="dashboardNaviButton">{this.state.button}</button>
         <div onClick={this.navigateRight} className={`rightArrow fas fa-arrow-circle-right ${arrowToHide[1]}`}></div>
       </footer>
     );
