@@ -7,9 +7,16 @@ class Dashboard extends React.Component {
       view: 'commit'
     };
   }
+  componentDidMount() {
+    fetch('api/get-review.php');
+  }
   render() {
     console.log(this.props.userData);
-    return null;
+    return (
+      <div className="container">
+
+      </div>
+    );
   }
 }
 
