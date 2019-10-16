@@ -185,6 +185,41 @@ margin: 20px;
   text-align: center;
   font-size: 36px;
 }
+.deedListContainer {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0ec088;
+  border-radius: 25px;
+  height: 472px;
+  overflow: auto;
+}
+.deedList {
+  width: 291px;
+  height: 76px;
+  background-color: #D5DDDA;
+  border-radius: 25px;
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 0;
+}
+.requesterImage {
+  width: 44px;
+}
+.requestImageContainer {
+  box-sizing: border-box;
+}
+.userHeadlineInfo {
+  text-align: center;
+  font-family: 'Asap', sans-serif;
+  line-height: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
 .hidden {
   visibility: hidden;
 }
