@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import DeedList from './deed-list';
+import Deed from './deed';
 
 class Commit extends React.Component {
   constructor(props) {
@@ -12,10 +13,12 @@ class Commit extends React.Component {
       view: 'categoryList',
       categoryFetchCompleted: false,
       categoryToDisplay: null,
-      deedListFetchCompleted: false
+      deedListFetchCompleted: false,
+      deedToDisplay: null
     };
     this.changeCommitView = this.changeCommitView.bind(this);
     this.getDeeds = this.getDeeds.bind(this);
+    this.getDeedToDisplay = this.getDeedToDisplay.bind(this);
   }
   componentDidMount() {
     fetch('api/categories.php')
@@ -53,22 +56,52 @@ class Commit extends React.Component {
   generateDeedList() {
     if (this.state.deedListFetchCompleted) {
       return (
-        <div className="deedListContainer">
-          {this.state.deedList.map(deed => {
-            return <DeedList key ={deed.request_id}headline={deed.headline} image_url={deed.image_url}/>;
-          })}
+        <div className="container">
+          <div className="heading">DEEDS</div>
+          <div className="deedListContainer">
+            {this.state.deedList.map(deed => {
+              return <DeedList key={deed.request_id} id={deed.request_id} getDeed={this.getDeedToDisplay} headline={deed.headline} image_url={deed.image_url}/>;
+            })}
+          </div>
+          <div className="buttonContainer">
+            <button onClick={() => this.changeCommitView('categoryList')}>BACK</button>
+          </div>
         </div>
       );
     } else {
       return 'loading deeds...';
     }
   }
+  generateDeed() {
+    if (this.state.deedToDisplay) {
+      return <Deed
+        username={this.state.deedToDisplay.user_id}
+        image={this.state.deedToDisplay.image_url}
+        headline={this.state.deedToDisplay.headline}
+        summary={this.state.deedToDisplay.summary}
+        zipcode={this.state.deedToDisplay.zipcode}
+        id={this.state.deedToDisplay.request_id}
+        changeView={this.changeCommitView}
+      />;
+    }
+  }
+  getDeedToDisplay(id) {
+    const deed = this.state.deedList.find(deed => deed.request_id === id);
+    console.log(deed);
+    this.setState({ deedToDisplay: deed, view: 'deed' });
+  }
   changeCommitView(newView) {
     this.setState({ view: newView });
   }
   commitDisplay() {
-    const display = this.state.view === 'categoryList' ? this.generateCategoryList() : this.generateDeedList();
-    return display;
+    switch (this.state.view) {
+      case 'categoryList':
+        return this.generateCategoryList();
+      case 'deedList':
+        return this.generateDeedList();
+      case 'deed':
+        return this.generateDeed();
+    }
   }
   render() {
     const display = this.commitDisplay();
@@ -81,9 +114,10 @@ class Commit extends React.Component {
     );
   }
 }
+
 function Categories(props) {
   return (
-    <div className="category" onClick={() => { props.select(props.id); props.changeView('deeds'); } }>{props.name.toUpperCase()}</div>
+    <div className="category" onClick={() => { props.select(props.id); props.changeView('deedList'); } }>{props.name.toUpperCase()}</div>
   );
 }
 

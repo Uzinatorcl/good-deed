@@ -31,7 +31,7 @@ class Dashboard extends React.Component {
   getReviewStars() {
     const totalReviews = this.state.userReviews.length;
     let reviewAverage = 0;
-    this.state.userReviews.map(object => {
+    this.state.userReviews.forEach(object => {
       reviewAverage += parseInt(object.rating);
     });
     reviewAverage = Math.floor(reviewAverage / totalReviews);
