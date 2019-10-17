@@ -2,8 +2,8 @@ import React from 'react';
 
 function DeedList(props) {
   return (
-    <div className="deedList">
-      <div className="row mx-auto align-items-center deedInfoContainer">
+    <div onClick={() => props.getDeed(props.id)} className="deedList">
+      <div className="row w-100 deedInfoContainer">
         <div className="col-9 userHeadlineInfo">
           <div className="userHeadline">{props.headline}</div>
         </div>

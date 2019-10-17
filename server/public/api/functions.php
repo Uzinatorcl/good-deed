@@ -10,8 +10,20 @@ if(!function_exists('error_handler')) {
     $jsonOutput = json_encode($output);
 
     print_r($jsonOutput);
-
+  }
   };
+  if (!function_exists('commit_error_handler')) {
+    function commit_error_handler($commitError)
+    {
+      http_response_code(409);
+      $output = [
+        "success" => false,
+        "error" => $commitError->getMessage()
+      ];
+      $jsonOutput = json_encode($output);
+
+      print_r($jsonOutput);
+    };
 }
 if (!function_exists('startUp')) {
   function startUp() {

@@ -15,7 +15,6 @@ class Dashboard extends React.Component {
     fetch(`api/get-review.php?id=${this.props.userData.id}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         this.setState({ userReviews: data });
       })
       .catch(error => console.error(error));
@@ -31,7 +30,7 @@ class Dashboard extends React.Component {
   getReviewStars() {
     const totalReviews = this.state.userReviews.length;
     let reviewAverage = 0;
-    this.state.userReviews.map(object => {
+    this.state.userReviews.forEach(object => {
       reviewAverage += parseInt(object.rating);
     });
     reviewAverage = Math.floor(reviewAverage / totalReviews);
