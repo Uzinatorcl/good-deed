@@ -19,6 +19,7 @@ class Commit extends React.Component {
     this.changeCommitView = this.changeCommitView.bind(this);
     this.getDeeds = this.getDeeds.bind(this);
     this.getDeedToDisplay = this.getDeedToDisplay.bind(this);
+    this.userCommitToDeed = this.userCommitToDeed.bind(this);
   }
   componentDidMount() {
     fetch('api/categories.php')
@@ -32,7 +33,6 @@ class Commit extends React.Component {
     fetch(`api/deeds.php?id=${categoryId}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         this.setState({ deedList: data, deedListFetchCompleted: true });
       })
       .catch(error => console.error(error));
@@ -72,6 +72,18 @@ class Commit extends React.Component {
       return 'loading deeds...';
     }
   }
+  userCommitToDeed(id) {
+    fetch('api/commit_deed.php', {
+      'method': 'POST',
+      'body': JSON.stringify(
+        {
+          'request_id': id,
+          'user_id': this.props.userData.id })
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+  }
   generateDeed() {
     if (this.state.deedToDisplay) {
       return <Deed
@@ -82,6 +94,7 @@ class Commit extends React.Component {
         zipcode={this.state.deedToDisplay.zipcode}
         id={this.state.deedToDisplay.request_id}
         changeView={this.changeCommitView}
+        commitToDeed={this.userCommitToDeed}
       />;
     }
   }
