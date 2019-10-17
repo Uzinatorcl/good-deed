@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './login';
 import Dashboard from './dashboard';
 import Commit from './commit';
+import Request from './request';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,9 @@ class App extends React.Component {
     }
     if (this.state.view === 'commit') {
       return <Commit userData={this.state.userData} setView={this.setView} />;
+    }
+    if (this.state.view === 'request') {
+      return <Request userData={this.state.userData} setView={this.setView} />;
     }
   }
 

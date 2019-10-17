@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+import Categories from './categories';
 import DeedList from './deed-list';
 import Deed from './deed';
 import Alert, { openAlert } from 'simple-react-alert';
@@ -45,7 +46,7 @@ class Commit extends React.Component {
         <div className="heading">CHOOSE YOUR CATEGORY</div>
         <div className="categoryList">
           {this.state.categoryList.map(category => {
-            return <Categories key={category.category_id} id={category.category_id} name={category.name} changeView={this.changeCommitView} select={this.getDeeds}/>;
+            return <Categories key={category.category_id} id={category.category_id} nextView ={'deedList'}name={category.name} changeView={this.changeCommitView} select={this.getDeeds}/>;
           })}
         </div>
       </>
@@ -131,12 +132,6 @@ class Commit extends React.Component {
       </div>
     );
   }
-}
-
-function Categories(props) {
-  return (
-    <div className="category" onClick={() => { props.select(props.id); props.changeView('deedList'); } }>{props.name.toUpperCase()}</div>
-  );
 }
 
 export default Commit;
