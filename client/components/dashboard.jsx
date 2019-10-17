@@ -15,7 +15,6 @@ class Dashboard extends React.Component {
     fetch(`api/get-review.php?id=${this.props.userData.id}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         this.setState({ userReviews: data });
       })
       .catch(error => console.error(error));

@@ -271,3 +271,12 @@ margin: 20px;
 .hidden {
   visibility: hidden;
 }
+
+.Alert-text {
+  font-family: 'DecovarRegular24TermA';
+   font-weight: bold;
+   font-style: normal;
+   text-transform: uppercase;
+   text-align: center;
+   font-size: 150%;
+}

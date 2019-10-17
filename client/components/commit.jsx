@@ -3,6 +3,7 @@ import Header from './header';
 import Footer from './footer';
 import DeedList from './deed-list';
 import Deed from './deed';
+import Alert, { openAlert } from 'simple-react-alert';
 
 class Commit extends React.Component {
   constructor(props) {
@@ -80,9 +81,13 @@ class Commit extends React.Component {
           'request_id': id,
           'user_id': this.props.userData.id })
     })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('You have already commited to this deed.')))
+      .then(() => {
+        openAlert({ message: 'Deed successfully commited to!', type: 'success' });
+      })
+      .catch(() => {
+        openAlert({ message: 'You have already commited to this deed.', type: 'danger' });
+      });
   }
   generateDeed() {
     if (this.state.deedToDisplay) {
@@ -100,7 +105,6 @@ class Commit extends React.Component {
   }
   getDeedToDisplay(id) {
     const deed = this.state.deedList.find(deed => deed.request_id === id);
-    console.log(deed);
     this.setState({ deedToDisplay: deed, view: 'deed' });
   }
   changeCommitView(newView) {
@@ -120,6 +124,7 @@ class Commit extends React.Component {
     const display = this.commitDisplay();
     return (
       <div className="container">
+        <Alert />
         <Header />
         {display}
         <Footer setView={this.props.setView} />
