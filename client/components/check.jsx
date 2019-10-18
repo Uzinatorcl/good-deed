@@ -34,16 +34,19 @@ class Check extends React.Component {
     );
   }
   componentDidMount() {
-    fetch(`api/user_get_requests.php?id=${this.props.userData.id}`)
+    fetch(`api/user_requests_commits.php?id=${this.props.userData.id}`)
       .then(response => response.json())
-      .then(data => this.setState({ userRequests: data }))
+      .then(data => {
+        console.log(data.requests, data.commits);
+        this.setState({ userRequests: data.requests, userCommits: data.commits });
+      })
       .catch(error => console.error(error));
   }
   renderCheckDisplay() {
     if (this.state.userRequests !== null && this.state.view === 'requests') {
       return this.generateUsersRequests();
     }
-    if (this.state.userRequests == null && this.state.view === 'requests') {
+    if (this.state.userRequests === null && this.state.view === 'requests') {
       return 'loading requests...';
     }
     if (this.state.userRequests.length === 0 && this.state.view === 'requests') {
