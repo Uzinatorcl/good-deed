@@ -28,6 +28,17 @@ class Request extends React.Component {
   }
   sendRequestToServer(request) {
     console.log(request);
+    fetch('api/deeds.php', {
+      method: 'POST',
+      body: JSON.stringify(request)
+    }).then(response => response.ok ? response : Promise.reject(new Error('There was an issue adding a request.')))
+      .then(() => {
+        openAlert({ message: 'Your request has successfully been posted!', type: 'success' });
+      })
+      .catch(e => {
+        console.log(e);
+        openAlert({ message: 'There was an issue adding your request.', type: 'warning' });
+      });
   }
   getCategory(category) {
     this.setState({ selectedCategory: category });

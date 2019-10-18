@@ -21,6 +21,11 @@ class RequestForm extends React.Component {
       'zipcode': this.state.zipcode,
       'summary': this.state.summary
     };
+    this.setState({
+      headline: '',
+      zipcode: '',
+      summary: ''
+    });
     this.props.requestCallback(request);
   }
   trackHeadline(event) {
@@ -39,10 +44,10 @@ class RequestForm extends React.Component {
         <div className="heading">REQUEST INFO</div>
         <div className="requestFormContainer">
           <form className="requestForm">
-            <input type="text" maxLength="61" className="requestBoxHeadline" id="headline" placeholder="HEADLINE" onChange={this.trackHeadline} />
-            <input type="text" maxLength="10" className="requestBoxZipcode" id="zipcode" placeholder="ZIPCODE" onChange={this.trackZipcode} />
+            <input type="text" maxLength="61" className="requestBoxHeadline" id="headline" placeholder="HEADLINE" onChange={this.trackHeadline} value={this.state.headline} />
+            <input type="text" maxLength="10" className="requestBoxZipcode" id="zipcode" placeholder="ZIPCODE" onChange={this.trackZipcode} value={this.state.zipcode} />
             <label className="summaryLabel">SUMMARY</label>
-            <textarea id="summary" className="requestBoxSummary" cols="30" rows="8" onChange={this.trackSummary}></textarea>
+            <textarea id="summary" className="requestBoxSummary" cols="30" rows="8" onChange={this.trackSummary} value={ this.state.summary }></textarea>
           </form>
         </div>
         <div className="deedButtonContainer">
