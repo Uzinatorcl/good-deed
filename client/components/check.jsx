@@ -5,6 +5,7 @@ import CheckRequests from './check-requests';
 import CheckCommits from './check-commits';
 import Deed from './deed';
 import Alert, { openAlert } from 'simple-react-alert';
+import { confirmAlert } from 'react-confirm-alert';
 
 class Check extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Check extends React.Component {
     this.setCheckDisplay = this.setCheckDisplay.bind(this);
     this.setDeed = this.setDeed.bind(this);
     this.cancelACommitToADeed = this.cancelACommitToADeed.bind(this);
+    this.cancelADeedRequest = this.cancelADeedRequest.bind(this);
   }
 
   setCheckDisplay(newView) {
@@ -47,6 +49,41 @@ class Check extends React.Component {
         openAlert({ message: 'There was an issue canceling your commit.', type: 'danger' });
       });
   }
+  cancelADeedRequest(id) {
+    confirmAlert({
+      title: 'Delete this request?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            fetch('api/cancel_request.php', {
+              'method': 'POST',
+              'body': JSON.stringify(
+                {
+                  'request_id': id
+                })
+            })
+              .then(response => response.ok ? response : Promise.reject(new Error('There was in issue canceling your request.')))
+              .then(() => {
+                openAlert({ message: 'You have successfully canceled your request.', type: 'success' });
+              })
+              .then(() => {
+                const updatedRequestList = this.state.userRequests.filter(request => request.request_id !== id);
+                this.setState({ userRequests: updatedRequestList });
+              })
+              .catch(error => {
+                console.error(error);
+                openAlert({ message: 'There was an issue canceling your request.', type: 'danger' });
+              });
+
+          }
+        },
+        {
+          label: 'No'
+        }
+      ]
+    });
+  }
   selectedButton(view) {
     if (view === 'requests') return ['selected', ''];
     if (view === 'commits') return ['', 'selected'];
@@ -54,7 +91,6 @@ class Check extends React.Component {
   }
   setDeed(id) {
     const deedToSet = this.state.userCommits.find(commit => commit.commit_id === id);
-    console.log(deedToSet);
     this.setState({ commitToDisplay: deedToSet });
   }
   generateUsersRequests() {
@@ -64,6 +100,7 @@ class Check extends React.Component {
           key={request.request_id}
           requestId={request.request_id}
           headline ={request.headline}
+          cancelCallback={this.cancelADeedRequest}
         />;
       })
     );
@@ -107,14 +144,14 @@ class Check extends React.Component {
       .catch(error => console.error(error));
   }
   renderCheckDisplay() {
-    if (this.state.userRequests !== null && this.state.view === 'requests') {
-      return this.generateUsersRequests();
-    }
     if (this.state.userRequests === null && this.state.view === 'requests') {
       return 'loading requests...';
     }
     if (this.state.userRequests.length === 0 && this.state.view === 'requests') {
       return 'You have no requests';
+    }
+    if (this.state.userRequests !== null && this.state.view === 'requests') {
+      return this.generateUsersRequests();
     }
     if (this.state.userCommits !== null && this.state.view === 'commits') {
       return this.generateUsersCommits();

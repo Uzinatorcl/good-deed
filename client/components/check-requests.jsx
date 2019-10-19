@@ -8,7 +8,7 @@ function CheckRequests(props) {
       </div>
       <div className="checkRequestButtonContainer">
         <span className="fas fa-check checkRequestCompleteIcon"></span>
-        <span className="fas fa-times checkRequestDeleteIcon"></span>
+        <span onClick={() => { props.cancelCallback(props.requestId); }} className="fas fa-times checkRequestDeleteIcon"></span>
       </div>
     </div>
   );
