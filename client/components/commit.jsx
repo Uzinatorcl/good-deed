@@ -100,7 +100,9 @@ class Commit extends React.Component {
         zipcode={this.state.deedToDisplay.zipcode}
         id={this.state.deedToDisplay.request_id}
         changeView={this.changeCommitView}
+        view={'deedList'}
         commitToDeed={this.userCommitToDeed}
+        secondButton={'COMMIT'}
       />;
     }
   }

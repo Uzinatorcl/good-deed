@@ -18,7 +18,9 @@ while ($row = mysqli_fetch_assoc($requestsResult)) {
   array_push($userRequestList, $row);
 }
 
-$commitsQuery = "SELECT C.`commit_id`, C.`request_id`, R.`headline`, R.`summary`, R.`zipcode`, R.`request_user_id` AS requesters_user_id, (SELECT `image_url` FROM `users` WHERE `user_id` = requesters_user_id) AS `image_url`
+$commitsQuery = "SELECT C.`commit_id`, C.`request_id`, R.`headline`, R.`summary`, R.`zipcode`, R.`request_user_id` AS requesters_user_id,
+(SELECT `image_url` FROM `users` WHERE `user_id` = requesters_user_id) AS `image_url`,
+(SELECT `username` FROM `users` WHERE `user_id` = requesters_user_id) AS `username`
 FROM `commits` AS C
 JOIN `requests` AS R
 ON C.`request_id`= R.`request_id`
