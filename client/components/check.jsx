@@ -4,6 +4,7 @@ import Footer from './footer';
 import CheckRequests from './check-requests';
 import CheckCommits from './check-commits';
 import Deed from './deed';
+import Alert, { openAlert } from 'simple-react-alert';
 
 class Check extends React.Component {
   constructor(props) {
@@ -22,8 +23,29 @@ class Check extends React.Component {
   setCheckDisplay(newView) {
     this.setState({ view: newView });
   }
-  cancelACommitToADeed() {
-    console.log('cancel registering');
+  cancelACommitToADeed(id) {
+    fetch('api/cancel_commit.php', {
+      'method': 'POST',
+      'body': JSON.stringify(
+        {
+          'commit_id': id
+        })
+    })
+      .then(response => response.ok ? response : Promise.reject(new Error('There was in issue canceling this commit.')))
+      .then(() => {
+        openAlert({ message: 'You have successfully canceled this commit.', type: 'success' });
+      })
+      .then(() => {
+        const updatedCommitList = this.state.userCommits.filter(commit => commit.commit_id !== id);
+        this.setState({ userCommits: updatedCommitList });
+      })
+      .then(() => {
+        this.setCheckDisplay('commits');
+      })
+      .catch(error => {
+        console.error(error);
+        openAlert({ message: 'There was an issue canceling your commit.', type: 'danger' });
+      });
   }
   selectedButton(view) {
     if (view === 'requests') return ['selected', ''];
@@ -68,11 +90,11 @@ class Check extends React.Component {
         headline={this.state.commitToDisplay.headline}
         summary={this.state.commitToDisplay.summary}
         zipcode={this.state.commitToDisplay.zipcode}
-        id={this.state.commitToDisplay.request_id}
+        id={this.state.commitToDisplay.commit_id}
         changeView={this.setCheckDisplay}
         view={'commits'}
         commitToDeed={this.cancelACommitToADeed}
-        secondButton={'DELETE'}
+        secondButton={'CANCEL'}
       />;
     }
   }
@@ -112,6 +134,7 @@ class Check extends React.Component {
     const display = this.renderCheckDisplay();
     return (
       <div className="container">
+        <Alert />
         <Header/>
         <div className="checkDeedButtonContainer">
           <button onClick={() => this.setCheckDisplay('requests')} className = {selected[0]}>REQUESTS</button>
