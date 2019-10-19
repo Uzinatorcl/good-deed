@@ -265,13 +265,16 @@ margin: 20px;
   margin: 0 10px;
   padding: 10px;
   width: 50%;
-  height: 50%;
+  border: 2px solid white;
 }
 
 .hidden {
   visibility: hidden;
 }
-
+.selected {
+  background-color: white;
+  color: #0ec088;
+}
 .Alert-text {
   font-family: 'DecovarRegular24TermA';
    font-weight: bold;
@@ -302,4 +305,61 @@ margin: 20px;
 }
 .summaryLabel {
 margin: 0;
+}
+.checkDeedButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+.checkDeedButtonContainer > * {
+  margin: 0 10px;
+  width: 50%;
+  height: 50%;
+  font-size: 160%;
+}
+.checkContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0ec088;
+  border-radius: 25px;
+  height: 68vh;
+  overflow: auto;
+}
+.checkRequest, .checkCommits {
+  width: 95%;
+  padding: 10px;
+  background-color: #D5DDDA;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  text-align: center;
+}
+.checkRequestHeadline, .checkCommitsHeadline {
+  width: 80%;
+  font-size: 120%;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.checkRequestButtonContainer, .checkCommitsImageContainer {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  font-size: 180%;
+}
+.checkCommitsImage {
+  max-height:80%;
+  max-width: 80%;
+  object-fit: fill;
+}
+.checkRequestCompleteIcon {
+  color: #0ec088;
+  margin: 0;
+}
+.checkRequestDeleteIcon {
+  color: red;
+  margin: 0 10px;
 }

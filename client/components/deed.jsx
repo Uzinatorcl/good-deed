@@ -19,8 +19,8 @@ function Deed(props) {
       <div className="userSummary">{props.summary}</div>
     </div>
     <div className="deedButtonContainer">
-      <button onClick={() => { props.changeView('deedList'); }}>BACK</button>
-      <button onClick={() => { props.commitToDeed(props.id); }}>COMMIT</button>
+      <button onClick={() => { props.changeView(props.view); }}>BACK</button>
+      <button onClick={() => { props.commitToDeed(props.id); }}>{props.secondButton}</button>
     </div>
     </>
   );

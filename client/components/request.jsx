@@ -27,7 +27,6 @@ class Request extends React.Component {
       .catch(error => console.error(error));
   }
   sendRequestToServer(request) {
-    console.log(request);
     fetch('api/deeds.php', {
       method: 'POST',
       body: JSON.stringify(request)

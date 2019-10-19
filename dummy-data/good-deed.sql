@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 17, 2019 at 03:51 PM
+-- Generation Time: Oct 18, 2019 at 08:24 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -71,6 +71,7 @@ INSERT INTO `commits` (`commit_id`, `request_id`, `commit_user_id`) VALUES
 (9, 16, 1),
 (11, 17, 1),
 (14, 18, 1),
+(59, 19, 1),
 (19, 22, 1),
 (40, 28, 1),
 (42, 29, 1),
@@ -93,50 +94,55 @@ CREATE TABLE `requests` (
   `headline` varchar(255) NOT NULL,
   `summary` text NOT NULL,
   `request_user_id` int(10) UNSIGNED NOT NULL,
-  `completed` bit(1) NOT NULL DEFAULT b'0'
+  `completed` bit(1) NOT NULL DEFAULT b'0',
+  `zipcode` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `requests`
 --
 
-INSERT INTO `requests` (`request_id`, `category_id`, `headline`, `summary`, `request_user_id`, `completed`) VALUES
-(1, 1, 'Please help my tc broke down', 'Im looking for someone with automtotive experience, im a student and dont have the technical skills to repair my car, thank you!', 2, b'1'),
-(2, 8, 'moving to irvine, need help!', 'Im currently moving to irvine to attend a coding bootcamp, I need someone who is willing to help me get my stuff out of my house, I can pay in costco hotdogs', 3, b'1'),
-(3, 9, 'need a ride to pet store', 'my dog aiko has been hungry for a while now and I havent been able to get a ride to the pet store, was hoping someone in irvine can drive me down to the pet store', 4, b'1'),
-(4, 3, 'my computer crashed, need ubuntu expert', 'was doing some stuff on my laptop and it crashed.  Need someone who has experience working with ubuntu and help me repair it.', 5, b'1'),
-(5, 5, 'my toilet exploded, pls', 'yo wussup its ya boi chrispy, i had people over last night and this morning my toilet was exploded, need someone with plumbing experience to save me', 6, b'1'),
-(6, 7, 'I cant stop vaping', 'Hello, my name is kevin and I am addicted to my juul,  Looking for someone to get me to stop, please.', 7, b'1'),
-(7, 1, 'car wouldnt start this morning', 'this morning when I was leaving for work my car wasnt starting if anyone can come by or even help me diagnose the problem over the phone that would be really appreciated', 8, b'0'),
-(8, 1, 'stuck on the side of the road', 'need some help, had a blowout, car is currently on the side of the 405 freeway', 20, b'0'),
-(9, 1, 'my son wants to learn to drive..', 'i dont have a license or a car and my son really wants to get his drivers license, looking for someone to help out, would really appreciate it.', 21, b'0'),
-(10, 2, 'need people to adopt pets!', 'we are meeting up at the park to get our pets adopted from the local shelter! the more the merrier', 19, b'0'),
-(11, 2, 'the river is full of trash', 'the local river is full of trash and we are meeting on thursday to clean it up.  We will be starting bright and early so come on by!', 22, b'0'),
-(12, 2, 'graffiti removal under the old bridge', 'my friends and I are getting together and cleaning up the graffiti under the bridge, come with clothes you can get dirty in!', 23, b'0'),
-(13, 3, 'learning javascript, would love some help', 'looking for someone to help tutor me on the weekends about how javascript works , Ill buy the coffee!', 9, b'0'),
-(14, 3, 'got blue screen of death..', 'was playing fortnite and my computer got the blue screen of death, now it wont turn on, will teach fortnite in exchange for helping me out', 24, b'0'),
-(15, 3, 'building a pc', 'i decided to get into pc building and ended up buying a bunch of parts.  I have no idea what I am doing and would love someone with experience to help.', 25, b'0'),
-(16, 4, 'my corgi needs food! :(', 'my kia is in the shop and my dog is hungry, looking for someone who can deliver , could really use the help', 10, b'0'),
-(17, 4, 'senior in need of his meds', 'disabled, currently cant go to the store to get my meds, looking for someone to help me out, my darn no good kids dont have time for me', 26, b'0'),
-(18, 4, 'broke my leg, need groceries', 'hi, I live alone currently and my apartment makes it difficult for me to leave my house.  I work from home and would love someone to deliver groceries to my house', 27, b'0'),
-(19, 5, 'building a shed', 'I was playing badmitton and destroyed my moms shed, and she wants me to rebuild it.  I have tools just needs someone to show me the way', 11, b'0'),
-(20, 5, 'light fixtures', 'just started a new business and currently theres no lighting.  i invested all my money into this place, could really use someone to help me install these lights. have no idea what im doin', 28, b'0'),
-(21, 5, 'water everywhere', 'had a pipe burst at the house and have no water running through the house now.  I have children please send help', 29, b'0'),
-(22, 6, 'no time to clean need help', 'im really busy with school and would love someone to help me clean my house', 12, b'0'),
-(23, 6, 'single mom dishes piling up', 'i come home late and leave early for work, would love a sanitary place for my kids but too busy.  Really looking for someone to help out', 30, b'0'),
-(24, 6, 'need help with my home', 'I am very old and have trouble walking.  I live alone and would really appreciate someone to help me clean my house', 31, b'0'),
-(25, 7, 'everyday gets harder', 'struggling with my depression alot more lately, would love someone to talk to and vibe with', 32, b'0'),
-(26, 7, 'my anxiety is all over the place', 'with my new job and my life becoming more stagnant my anxiety is getting worse as the days go on.  Would really love to talk to someone who has ever experienced the same.', 33, b'0'),
-(27, 7, 'dont know where else to turn', 'been having alot of issues lately.  Just tired of the same thing everyday.  talking to someone new would be a nice change a pace. lets get coffee.', 34, b'0'),
-(28, 8, 'moving in with my girlfriend!', 'hi! have alot of stuff to move from house to my girlfriends place.  I would really appeciate anyone that can lend a hand.  Im a web developer so I can offer my services in exchange for yours!', 13, b'0'),
-(29, 8, 'moving out of state', 'heading back to my home town in louisiana. im a single father and i dont know many people here, need some help packing up and loading into a truck.  Ill take anyone I can get, just need somebody with arms and legs.', 35, b'0'),
-(30, 8, 'need to leave', 'my apartment is evicting me and I have a very short period of time to get my stuff into my moms place, I would appreciate anybody willing to lend me a hand', 36, b'0'),
-(31, 9, 'need a ride to school!', 'if anybody that lives in irvine and has a local job in the same city, I would really appreciate a ride until I get my car back from the shop! Thanks', 14, b'0'),
-(32, 9, 'san diego to irvine school', 'Would really appreciate someone to carpool with.  I head to irvine from san diego every day, and would like to be productive during the car ride.  Willing to drive every other day for someone to do the same for me', 15, b'0'),
-(33, 9, 'vegas this weekend!', 'trying to meet up with my friends in vegas, if you are heading there lets go together!', 37, b'0'),
-(34, 10, 'my chickens aint eatin', 'My chickens aint eatin the feed i got them.  If anyone has chicken feed they can donate, I would really appreciate it', 38, b'0'),
-(35, 10, 'trying to party', 'im new to irvine, and looking to have some fun on the weekend!', 16, b'0'),
-(36, 10, 'need new recipes', 'I was a cook for seven years, been meaning to try new foods and cook some for my children.  If you have any recipes send them my way.', 17, b'0');
+INSERT INTO `requests` (`request_id`, `category_id`, `headline`, `summary`, `request_user_id`, `completed`, `zipcode`) VALUES
+(1, 1, 'Please help my tc broke down', 'Im looking for someone with automtotive experience, im a student and dont have the technical skills to repair my car, thank you!', 2, b'1', '92618'),
+(2, 8, 'moving to irvine, need help!', 'Im currently moving to irvine to attend a coding bootcamp, I need someone who is willing to help me get my stuff out of my house, I can pay in costco hotdogs', 3, b'1', '92618'),
+(3, 9, 'need a ride to pet store', 'my dog aiko has been hungry for a while now and I havent been able to get a ride to the pet store, was hoping someone in irvine can drive me down to the pet store', 4, b'1', '92618'),
+(4, 3, 'my computer crashed, need ubuntu expert', 'was doing some stuff on my laptop and it crashed.  Need someone who has experience working with ubuntu and help me repair it.', 5, b'1', '92618'),
+(5, 5, 'my toilet exploded, pls', 'yo wussup its ya boi chrispy, i had people over last night and this morning my toilet was exploded, need someone with plumbing experience to save me', 6, b'1', '92618'),
+(6, 7, 'I cant stop vaping', 'Hello, my name is kevin and I am addicted to my juul,  Looking for someone to get me to stop, please.', 7, b'1', '92618'),
+(7, 1, 'car wouldnt start this morning', 'this morning when I was leaving for work my car wasnt starting if anyone can come by or even help me diagnose the problem over the phone that would be really appreciated', 8, b'0', '92618'),
+(8, 1, 'stuck on the side of the road', 'need some help, had a blowout, car is currently on the side of the 405 freeway', 20, b'0', '92618'),
+(9, 1, 'my son wants to learn to drive..', 'i dont have a license or a car and my son really wants to get his drivers license, looking for someone to help out, would really appreciate it.', 21, b'0', '92618'),
+(10, 2, 'need people to adopt pets!', 'we are meeting up at the park to get our pets adopted from the local shelter! the more the merrier', 19, b'0', '92618'),
+(11, 2, 'the river is full of trash', 'the local river is full of trash and we are meeting on thursday to clean it up.  We will be starting bright and early so come on by!', 22, b'0', '92618'),
+(12, 2, 'graffiti removal under the old bridge', 'my friends and I are getting together and cleaning up the graffiti under the bridge, come with clothes you can get dirty in!', 23, b'0', '92618'),
+(13, 3, 'learning javascript, would love some help', 'looking for someone to help tutor me on the weekends about how javascript works , Ill buy the coffee!', 9, b'0', '92618'),
+(14, 3, 'got blue screen of death..', 'was playing fortnite and my computer got the blue screen of death, now it wont turn on, will teach fortnite in exchange for helping me out', 24, b'0', '92618'),
+(15, 3, 'building a pc', 'i decided to get into pc building and ended up buying a bunch of parts.  I have no idea what I am doing and would love someone with experience to help.', 25, b'0', '92618'),
+(16, 4, 'my corgi needs food! :(', 'my kia is in the shop and my dog is hungry, looking for someone who can deliver , could really use the help', 10, b'0', '92618'),
+(17, 4, 'senior in need of his meds', 'disabled, currently cant go to the store to get my meds, looking for someone to help me out, my darn no good kids dont have time for me', 26, b'0', '92618'),
+(18, 4, 'broke my leg, need groceries', 'hi, I live alone currently and my apartment makes it difficult for me to leave my house.  I work from home and would love someone to deliver groceries to my house', 27, b'0', '92618'),
+(19, 5, 'building a shed', 'I was playing badmitton and destroyed my moms shed, and she wants me to rebuild it.  I have tools just needs someone to show me the way', 11, b'0', '92618'),
+(20, 5, 'light fixtures', 'just started a new business and currently theres no lighting.  i invested all my money into this place, could really use someone to help me install these lights. have no idea what im doin', 28, b'0', '92618'),
+(21, 5, 'water everywhere', 'had a pipe burst at the house and have no water running through the house now.  I have children please send help', 29, b'0', '92618'),
+(22, 6, 'no time to clean need help', 'im really busy with school and would love someone to help me clean my house', 12, b'0', '92618'),
+(23, 6, 'single mom dishes piling up', 'i come home late and leave early for work, would love a sanitary place for my kids but too busy.  Really looking for someone to help out', 30, b'0', '92618'),
+(24, 6, 'need help with my home', 'I am very old and have trouble walking.  I live alone and would really appreciate someone to help me clean my house', 31, b'0', '92618'),
+(25, 7, 'everyday gets harder', 'struggling with my depression alot more lately, would love someone to talk to and vibe with', 32, b'0', '92618'),
+(26, 7, 'my anxiety is all over the place', 'with my new job and my life becoming more stagnant my anxiety is getting worse as the days go on.  Would really love to talk to someone who has ever experienced the same.', 33, b'0', '92618'),
+(27, 7, 'dont know where else to turn', 'been having alot of issues lately.  Just tired of the same thing everyday.  talking to someone new would be a nice change a pace. lets get coffee.', 34, b'0', '92618'),
+(28, 8, 'moving in with my girlfriend!', 'hi! have alot of stuff to move from house to my girlfriends place.  I would really appeciate anyone that can lend a hand.  Im a web developer so I can offer my services in exchange for yours!', 13, b'0', '92618'),
+(29, 8, 'moving out of state', 'heading back to my home town in louisiana. im a single father and i dont know many people here, need some help packing up and loading into a truck.  Ill take anyone I can get, just need somebody with arms and legs.', 35, b'0', '92618'),
+(30, 8, 'need to leave', 'my apartment is evicting me and I have a very short period of time to get my stuff into my moms place, I would appreciate anybody willing to lend me a hand', 36, b'0', '92618'),
+(31, 9, 'need a ride to school!', 'if anybody that lives in irvine and has a local job in the same city, I would really appreciate a ride until I get my car back from the shop! Thanks', 14, b'0', '92618'),
+(32, 9, 'san diego to irvine school', 'Would really appreciate someone to carpool with.  I head to irvine from san diego every day, and would like to be productive during the car ride.  Willing to drive every other day for someone to do the same for me', 15, b'0', '92618'),
+(33, 9, 'vegas this weekend!', 'trying to meet up with my friends in vegas, if you are heading there lets go together!', 37, b'0', '92618'),
+(34, 10, 'my chickens aint eatin', 'My chickens aint eatin the feed i got them.  If anyone has chicken feed they can donate, I would really appreciate it', 38, b'0', '92618'),
+(35, 10, 'trying to party', 'im new to irvine, and looking to have some fun on the weekend!', 16, b'0', '92618'),
+(36, 10, 'need new recipes', 'I was a cook for seven years, been meaning to try new foods and cook some for my children.  If you have any recipes send them my way.', 17, b'0', '92618'),
+(49, 1, 'sadfasdfasd', 'asdfasdfa sdf asdf asd asdfasdf sadf asdf', 1, b'0', '90638'),
+(50, 5, 'sadfasdf', 'asdfasdf asdf asdf asdf asdfsda f asdf asdfsa df ', 1, b'0', '92881'),
+(51, 7, 'im cray-c', 'hreger derger lerger burger merger herhererherger', 1, b'0', '92881'),
+(52, 1, 'fasdfasd', 'dsfgsdfgsdf gsdfgsdfgsd', 1, b'0', '45353');
 
 -- --------------------------------------------------------
 
@@ -276,12 +282,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `commits`
 --
 ALTER TABLE `commits`
-  MODIFY `commit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `commit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `request_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `request_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
