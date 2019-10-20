@@ -5,6 +5,7 @@ import CheckRequests from './check-requests';
 import CheckCommits from './check-commits';
 import Deed from './deed';
 import CompleteRequestUser from './check-complete-request';
+import LeaveReview from './leave-review';
 import Alert, { openAlert } from 'simple-react-alert';
 import { confirmAlert } from 'react-confirm-alert';
 
@@ -16,13 +17,15 @@ class Check extends React.Component {
       userRequests: null,
       userCommits: null,
       commitToDisplay: null,
-      usersWhoCommitedToYourRequest: null
+      usersWhoCommitedToYourRequest: null,
+      userToSendReview: null
     };
     this.setCheckDisplay = this.setCheckDisplay.bind(this);
     this.setDeed = this.setDeed.bind(this);
     this.cancelACommitToADeed = this.cancelACommitToADeed.bind(this);
     this.cancelADeedRequest = this.cancelADeedRequest.bind(this);
     this.setUserDataForRequest = this.setUserDataForRequest.bind(this);
+    this.userReviewData = this.userReviewData.bind(this);
   }
 
   setCheckDisplay(newView) {
@@ -100,6 +103,7 @@ class Check extends React.Component {
     fetch(`api/user_who_commited.php?request_id=${id}`)
       .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an issue retrieving your commiters.')))
       .then(data => {
+        console.log(data);
         this.setState({ usersWhoCommitedToYourRequest: data });
       })
       .then(() => {
@@ -111,7 +115,10 @@ class Check extends React.Component {
       })
       .catch(error => console.error(error));
   }
-
+  userReviewData(id) {
+    const currentUserToReview = this.state.usersWhoCommitedToYourRequest.find(user => user.commit_id === id);
+    this.setState({ userToSendReview: currentUserToReview });
+  }
   generateUsersRequests() {
     return (
       this.state.userRequests.map(request => {
@@ -157,14 +164,21 @@ class Check extends React.Component {
   }
   generateUsersWhoCommitedToRequest() {
     return (
-      this.state.userRequests.map(request => {
+      this.state.usersWhoCommitedToYourRequest.map(user => {
         return <CompleteRequestUser
-          key={request.request_id}
-          requestId={request.request_id}
-          headline={request.headline}
-          cancelCallback={this.cancelADeedRequest}
+          key={user.user_id}
+          commitId={user.commit_id}
+          username={user.username}
+          image={user.image_url}
+          reviewData={this.userReviewData}
+          changeView={this.setCheckDisplay}
         />;
       })
+    );
+  }
+  generateReviewForm() {
+    return (
+      <LeaveReview/>
     );
   }
   componentDidMount() {
@@ -198,7 +212,15 @@ class Check extends React.Component {
       return this.generateDeed();
     }
     if (this.state.view === 'complete-request') {
-      return 'Loading users...';
+      return (
+      <>
+        <div className="heading" style={{ 'color': 'white' }}>Which user completed your deed?</div>
+        {this.generateUsersWhoCommitedToRequest()}
+        </>
+      );
+    }
+    if (this.state.view === 'review-form') {
+      return this.generateReviewForm();
     }
   }
   render() {
