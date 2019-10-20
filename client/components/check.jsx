@@ -4,6 +4,8 @@ import Footer from './footer';
 import CheckRequests from './check-requests';
 import CheckCommits from './check-commits';
 import Deed from './deed';
+import CompleteRequestUser from './check-complete-request';
+import LeaveReview from './leave-review';
 import Alert, { openAlert } from 'simple-react-alert';
 import { confirmAlert } from 'react-confirm-alert';
 
@@ -14,12 +16,17 @@ class Check extends React.Component {
       view: 'requests',
       userRequests: null,
       userCommits: null,
-      commitToDisplay: null
+      commitToDisplay: null,
+      usersWhoCommitedToYourRequest: null,
+      userToSendReview: null
     };
     this.setCheckDisplay = this.setCheckDisplay.bind(this);
     this.setDeed = this.setDeed.bind(this);
     this.cancelACommitToADeed = this.cancelACommitToADeed.bind(this);
     this.cancelADeedRequest = this.cancelADeedRequest.bind(this);
+    this.setUserDataForRequest = this.setUserDataForRequest.bind(this);
+    this.userReviewData = this.userReviewData.bind(this);
+    this.submitReview = this.submitReview.bind(this);
   }
 
   setCheckDisplay(newView) {
@@ -93,6 +100,46 @@ class Check extends React.Component {
     const deedToSet = this.state.userCommits.find(commit => commit.commit_id === id);
     this.setState({ commitToDisplay: deedToSet });
   }
+  setUserDataForRequest(id) {
+    fetch(`api/user_who_commited.php?request_id=${id}`)
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an issue retrieving your commiters.')))
+      .then(data => {
+        this.setState({ usersWhoCommitedToYourRequest: data });
+      })
+      .then(() => {
+        if (!this.state.usersWhoCommitedToYourRequest.length) {
+          openAlert({ message: 'There are no users who have commited to your request at this time.', type: 'info' });
+        } else {
+          this.setCheckDisplay('complete-request');
+        }
+      })
+      .catch(error => console.error(error));
+  }
+  submitReview(review) {
+    fetch('api/submit_review.php', {
+      'method': 'POST',
+      'body': JSON.stringify(review)
+    })
+      .then(response => response.ok ? response : Promise.reject(new Error('There was an error submitting the review')))
+      .then(() => {
+        openAlert({ message: 'Thank you for submitting your review!', type: 'success' });
+      })
+      .then(() => {
+        const updatedRequests = this.state.userRequests.filter(request => request.request_id !== review.request_id);
+        this.setState({ userRequests: updatedRequests });
+      })
+      .then(() => {
+        this.setCheckDisplay('requests');
+      })
+      .catch(error => {
+        console.error(error);
+        openAlert({ message: 'There was an issue submitting your review.', type: 'danger' });
+      });
+  }
+  userReviewData(id) {
+    const currentUserToReview = this.state.usersWhoCommitedToYourRequest.find(user => user.commit_id === id);
+    this.setState({ userToSendReview: currentUserToReview });
+  }
   generateUsersRequests() {
     return (
       this.state.userRequests.map(request => {
@@ -101,6 +148,7 @@ class Check extends React.Component {
           requestId={request.request_id}
           headline ={request.headline}
           cancelCallback={this.cancelADeedRequest}
+          completeCallback={this.setUserDataForRequest}
         />;
       })
     );
@@ -135,6 +183,33 @@ class Check extends React.Component {
       />;
     }
   }
+  generateUsersWhoCommitedToRequest() {
+    return (
+      this.state.usersWhoCommitedToYourRequest.map(user => {
+        return <CompleteRequestUser
+          key={user.user_id}
+          commitId={user.commit_id}
+          username={user.username}
+          image={user.image_url}
+          reviewData={this.userReviewData}
+          changeView={this.setCheckDisplay}
+        />;
+      })
+    );
+  }
+  generateReviewForm() {
+    const { request_id: requestId, user_id: recievingUserId, commit_id: commitId } = this.state.userToSendReview;
+    const { id: sendingUserId } = this.props.userData;
+    return (
+      <LeaveReview
+        requestId={requestId}
+        commitId={commitId}
+        recievingUserId={recievingUserId}
+        sendingUserId={sendingUserId}
+        submitReview={this.submitReview}
+      />
+    );
+  }
   componentDidMount() {
     fetch(`api/user_requests_commits.php?id=${this.props.userData.id}`)
       .then(response => response.json())
@@ -164,6 +239,20 @@ class Check extends React.Component {
     }
     if (this.state.view === 'deed') {
       return this.generateDeed();
+    }
+    if (this.state.view === 'complete-request') {
+      return (
+      <>
+        <div className="heading" style={{ 'color': 'white' }}>Which user completed your deed?</div>
+        {this.generateUsersWhoCommitedToRequest()}
+        </>
+      );
+    }
+    if (this.state.view === 'review-form' && this.state.userToSendReview !== null) {
+      return this.generateReviewForm();
+    }
+    if (this.state.view === 'review-form' && this.state.userToSendReview === null) {
+      return 'Loading Review Form...';
     }
   }
   render() {
