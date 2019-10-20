@@ -117,6 +117,8 @@ class Check extends React.Component {
   }
   userReviewData(id) {
     const currentUserToReview = this.state.usersWhoCommitedToYourRequest.find(user => user.commit_id === id);
+    console.log(currentUserToReview);
+    console.log(this.props.userData);
     this.setState({ userToSendReview: currentUserToReview });
   }
   generateUsersRequests() {
@@ -177,8 +179,14 @@ class Check extends React.Component {
     );
   }
   generateReviewForm() {
+    const { request_id: requestId, user_id: recievingUserId } = this.state.userToSendReview;
+    const { sending_user_id: sendingUserId } = this.props.userData;
     return (
-      <LeaveReview/>
+      <LeaveReview
+        requestId={requestId}
+        recievingUserId={recievingUserId}
+        sendingUserId={sendingUserId}
+      />
     );
   }
   componentDidMount() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
+import { throws } from 'assert';
 class LeaveReview extends React.Component {
   constructor(props) {
     super(props);
@@ -8,6 +9,7 @@ class LeaveReview extends React.Component {
       summary: ''
     };
     this.trackSummary = this.trackSummary.bind(this);
+    this.sendReview = this.sendReview.bind(this);
   }
   onStarClick(nextValue, prevValue, name) {
     console.log(this.state.rating);
@@ -15,6 +17,16 @@ class LeaveReview extends React.Component {
   }
   trackSummary(event) {
     this.setState({ summary: event.target.value });
+  }
+  sendReview() {
+    const review = {
+      'request_id': this.props.requestId,
+      'recieving_user_id': this.props.recieving_user_id,
+      'sending_user_id': this.props.sending_user_id,
+      'review_message': this.state.summary,
+      'rating': this.state.rating
+    };
+    console.log(review);
   }
   render() {
     const { rating, summary } = this.state;
@@ -31,7 +43,7 @@ class LeaveReview extends React.Component {
           </form>
         </div>
         <div className="reviewButtonContainer">
-          <button>SUBMIT</button>
+          <button onClick={this.sendReview}>SUBMIT</button>
         </div>
       </div>
     );
