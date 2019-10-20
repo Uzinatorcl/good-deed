@@ -7,7 +7,7 @@ function CheckRequests(props) {
         {props.headline}
       </div>
       <div className="checkRequestButtonContainer">
-        <span className="fas fa-check checkRequestCompleteIcon"></span>
+        <span onClick={() => { props.completeCallback(props.requestId); }} className="fas fa-check checkRequestCompleteIcon"></span>
         <span onClick={() => { props.cancelCallback(props.requestId); }} className="fas fa-times checkRequestDeleteIcon"></span>
       </div>
     </div>

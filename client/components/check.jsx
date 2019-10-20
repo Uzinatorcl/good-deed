@@ -4,6 +4,7 @@ import Footer from './footer';
 import CheckRequests from './check-requests';
 import CheckCommits from './check-commits';
 import Deed from './deed';
+import CompleteRequestUser from './check-complete-request';
 import Alert, { openAlert } from 'simple-react-alert';
 import { confirmAlert } from 'react-confirm-alert';
 
@@ -14,12 +15,14 @@ class Check extends React.Component {
       view: 'requests',
       userRequests: null,
       userCommits: null,
-      commitToDisplay: null
+      commitToDisplay: null,
+      usersWhoCommitedToYourRequest: null
     };
     this.setCheckDisplay = this.setCheckDisplay.bind(this);
     this.setDeed = this.setDeed.bind(this);
     this.cancelACommitToADeed = this.cancelACommitToADeed.bind(this);
     this.cancelADeedRequest = this.cancelADeedRequest.bind(this);
+    this.setUserDataForRequest = this.setUserDataForRequest.bind(this);
   }
 
   setCheckDisplay(newView) {
@@ -93,6 +96,22 @@ class Check extends React.Component {
     const deedToSet = this.state.userCommits.find(commit => commit.commit_id === id);
     this.setState({ commitToDisplay: deedToSet });
   }
+  setUserDataForRequest(id) {
+    fetch(`api/user_who_commited.php?request_id=${id}`)
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an issue retrieving your commiters.')))
+      .then(data => {
+        this.setState({ usersWhoCommitedToYourRequest: data });
+      })
+      .then(() => {
+        if (!this.state.usersWhoCommitedToYourRequest.length) {
+          openAlert({ message: 'There are no users who have commited to your request at this time.', type: 'info' });
+        } else {
+          this.setCheckDisplay('complete-request');
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
   generateUsersRequests() {
     return (
       this.state.userRequests.map(request => {
@@ -101,6 +120,7 @@ class Check extends React.Component {
           requestId={request.request_id}
           headline ={request.headline}
           cancelCallback={this.cancelADeedRequest}
+          completeCallback={this.setUserDataForRequest}
         />;
       })
     );
@@ -135,6 +155,18 @@ class Check extends React.Component {
       />;
     }
   }
+  generateUsersWhoCommitedToRequest() {
+    return (
+      this.state.userRequests.map(request => {
+        return <CompleteRequestUser
+          key={request.request_id}
+          requestId={request.request_id}
+          headline={request.headline}
+          cancelCallback={this.cancelADeedRequest}
+        />;
+      })
+    );
+  }
   componentDidMount() {
     fetch(`api/user_requests_commits.php?id=${this.props.userData.id}`)
       .then(response => response.json())
@@ -164,6 +196,9 @@ class Check extends React.Component {
     }
     if (this.state.view === 'deed') {
       return this.generateDeed();
+    }
+    if (this.state.view === 'complete-request') {
+      return 'Loading users...';
     }
   }
   render() {
