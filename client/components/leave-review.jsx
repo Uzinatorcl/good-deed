@@ -12,7 +12,6 @@ class LeaveReview extends React.Component {
     this.sendReview = this.sendReview.bind(this);
   }
   onStarClick(nextValue, prevValue, name) {
-    console.log(this.state.rating);
     this.setState({ rating: nextValue });
   }
   trackSummary(event) {
@@ -20,13 +19,14 @@ class LeaveReview extends React.Component {
   }
   sendReview() {
     const review = {
+      'commit_id': this.props.commitId,
       'request_id': this.props.requestId,
-      'recieving_user_id': this.props.recieving_user_id,
-      'sending_user_id': this.props.sending_user_id,
+      'recieving_user_id': this.props.recievingUserId,
+      'sending_user_id': this.props.sendingUserId,
       'review_message': this.state.summary,
       'rating': this.state.rating
     };
-    console.log(review);
+    this.props.submitReview(review);
   }
   render() {
     const { rating, summary } = this.state;

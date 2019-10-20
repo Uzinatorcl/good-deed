@@ -26,6 +26,7 @@ class Check extends React.Component {
     this.cancelADeedRequest = this.cancelADeedRequest.bind(this);
     this.setUserDataForRequest = this.setUserDataForRequest.bind(this);
     this.userReviewData = this.userReviewData.bind(this);
+    this.submitReview = this.submitReview.bind(this);
   }
 
   setCheckDisplay(newView) {
@@ -103,7 +104,6 @@ class Check extends React.Component {
     fetch(`api/user_who_commited.php?request_id=${id}`)
       .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an issue retrieving your commiters.')))
       .then(data => {
-        console.log(data);
         this.setState({ usersWhoCommitedToYourRequest: data });
       })
       .then(() => {
@@ -115,10 +115,29 @@ class Check extends React.Component {
       })
       .catch(error => console.error(error));
   }
+  submitReview(review) {
+    fetch('api/submit_review.php', {
+      'method': 'POST',
+      'body': JSON.stringify(review)
+    })
+      .then(response => response.ok ? response : Promise.reject(new Error('There was an error submitting the review')))
+      .then(() => {
+        openAlert({ message: 'Thank you for submitting your review!', type: 'success' });
+      })
+      .then(() => {
+        const updatedRequests = this.state.userRequests.filter(request => request.request_id !== review.request_id);
+        this.setState({ userRequests: updatedRequests });
+      })
+      .then(() => {
+        this.setCheckDisplay('requests');
+      })
+      .catch(error => {
+        console.error(error);
+        openAlert({ message: 'There was an issue submitting your review.', type: 'danger' });
+      });
+  }
   userReviewData(id) {
     const currentUserToReview = this.state.usersWhoCommitedToYourRequest.find(user => user.commit_id === id);
-    console.log(currentUserToReview);
-    console.log(this.props.userData);
     this.setState({ userToSendReview: currentUserToReview });
   }
   generateUsersRequests() {
@@ -179,13 +198,15 @@ class Check extends React.Component {
     );
   }
   generateReviewForm() {
-    const { request_id: requestId, user_id: recievingUserId } = this.state.userToSendReview;
-    const { sending_user_id: sendingUserId } = this.props.userData;
+    const { request_id: requestId, user_id: recievingUserId, commit_id: commitId } = this.state.userToSendReview;
+    const { id: sendingUserId } = this.props.userData;
     return (
       <LeaveReview
         requestId={requestId}
+        commitId={commitId}
         recievingUserId={recievingUserId}
         sendingUserId={sendingUserId}
+        submitReview={this.submitReview}
       />
     );
   }
@@ -227,8 +248,11 @@ class Check extends React.Component {
         </>
       );
     }
-    if (this.state.view === 'review-form') {
+    if (this.state.view === 'review-form' && this.state.userToSendReview !== null) {
       return this.generateReviewForm();
+    }
+    if (this.state.view === 'review-form' && this.state.userToSendReview === null) {
+      return 'Loading Review Form...';
     }
   }
   render() {
