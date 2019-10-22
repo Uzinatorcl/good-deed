@@ -10,11 +10,6 @@ class Settings extends React.Component {
       userImage: this.props.userData.image_url
     };
     this.updatePhoto = this.updatePhoto.bind(this);
-    this.fixImagePath = this.fixImagePath.bind(this);
-  }
-
-  fixImagePath(string) {
-    return string.substr(3);
   }
 
   updatePhoto(event) {
@@ -22,16 +17,22 @@ class Settings extends React.Component {
     const data = new FormData();
     const photoToUpload = event.target.files[0];
     data.append('profilePhoto', photoToUpload);
+    data.append('id', this.props.userData.id);
     fetch('api/upload_profile_photo.php', {
       'method': 'POST',
       'body': data
     })
       .then(response => response.json())
-      .then(data => data.success ? data : Promise.reject(new Error(data.message)))
-      .then(data => this.setState({ userImage: data }))
-      .catch(() => openAlert({ message: 'There was an updating your profile image.', type: 'danger' }));
-
-    event.preventDefault();
+      .then(responseData => responseData.success ? responseData : Promise.reject(new Error(responseData.errors)))
+      .then(responseData => {
+        this.props.updateProfileImage(responseData.filepath);
+        this.setState({ userImage: responseData.filepath }, () => {
+          openAlert({ message: 'You have successfully updated your profile image.', type: 'success' });
+        });
+      })
+      .catch(() => (
+        openAlert({ message: 'There was an issue updating your profile image.', type: 'danger' })
+      ));
   }
 
   render() {
@@ -44,11 +45,8 @@ class Settings extends React.Component {
             <img className="userImageSettings" src={this.state.userImage} alt="Your Profile Image" />
           </div>
           <div className="settingsButtonContainer">
-            {/* <input type="file"
-            id="profileImage" name="profileImage"
-            accept="image/png, image/jpeg"/ > */}
             <label className="fileContainer">
-              <button className="updatePhotoButton">UPDATE PHOTO</button>
+              <button type="button" className="updatePhotoButton">UPDATE PHOTO</button>
               <input onChange={this.updatePhoto} type="file"
                 id="profileImage" name="profileImage"
                 accept="image/png, image/jpeg" />

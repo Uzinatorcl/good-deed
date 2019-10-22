@@ -5,6 +5,7 @@ import Commit from './commit';
 import Request from './request';
 import Check from './check';
 import Settings from './settings';
+import { throws } from 'assert';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,11 +16,16 @@ class App extends React.Component {
     };
     this.getUserData = this.getUserData.bind(this);
     this.setView = this.setView.bind(this);
+    this.updateProfileImage = this.updateProfileImage.bind(this);
   }
   setView(newView) {
     this.setState({ view: newView });
   }
-
+  updateProfileImage(url) {
+    const copyUserData = Object.assign({}, this.state.userData);
+    copyUserData.image_url = url;
+    this.setState({ userData: copyUserData });
+  }
   getUserData(userDataToGet) {
     fetch('/api/login.php', {
       method: 'POST',
@@ -54,7 +60,7 @@ class App extends React.Component {
       return <Check userData={this.state.userData} setView={this.setView} />;
     }
     if (this.state.view === 'settings') {
-      return <Settings userData={this.state.userData} setView={this.setView} />;
+      return <Settings userData={this.state.userData} setView={this.setView} updateProfileImage={this.updateProfileImage} />;
     }
   }
 
