@@ -298,6 +298,23 @@ margin: 20px;
   height: 130%;
   font-size: 1.6rem;
 }
+.accountFormContainer {
+  margin-top: 33%;
+}
+.accountInfoForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.accountInfoForm > * {
+  border-style: none;
+  width: 90%;
+  margin: 10px;
+  text-align: center;
+  border-radius: 25px;
+  height: 130%;
+  font-size: 1.6rem;
+}
 .requestBoxSummary {
   text-align: left;
   margin-top: 0;
@@ -384,4 +401,50 @@ margin: 0;
   margin: 10px;
   padding: 10px;
   border: 2px solid white;
+}
+.settingsButtonContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  height: 60vh;
+}
+.settingsButtonContainer > * {
+  margin: 10px;
+  padding: 10px;
+}
+.userImageContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.userImageSettings {
+  width: 15vh;
+}
+.updatePhotoButton {
+  width: 100%;
+  margin: auto;
+  margin-top: 100px;
+}
+.accountInfoButton, .logoutButton {
+  width: 90%;
+  margin: auto;
+}
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+}
+
+.fileContainer [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
 }
