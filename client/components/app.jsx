@@ -5,7 +5,7 @@ import Commit from './commit';
 import Request from './request';
 import Check from './check';
 import Settings from './settings';
-import { throws } from 'assert';
+import Messages from './messages';
 
 class App extends React.Component {
   constructor(props) {
@@ -74,6 +74,9 @@ class App extends React.Component {
     }
     if (this.state.view === 'settings') {
       return <Settings userData={this.state.userData} setView={this.setView} updateProfileImage={this.updateProfileImage} updateAccountInformation={this.updateAccountInformation} logout={this.logout}/>;
+    }
+    if (this.state.view === 'messages') {
+      return <Messages userData={this.state.userData} setView={this.setView} updateProfileImage={this.updateProfileImage} updateAccountInformation={this.updateAccountInformation} logout={this.logout} />;
     }
   }
 
