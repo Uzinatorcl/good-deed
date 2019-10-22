@@ -17,6 +17,7 @@ class App extends React.Component {
     this.getUserData = this.getUserData.bind(this);
     this.setView = this.setView.bind(this);
     this.updateProfileImage = this.updateProfileImage.bind(this);
+    this.logout = this.logout.bind(this);
   }
   setView(newView) {
     this.setState({ view: newView });
@@ -25,6 +26,9 @@ class App extends React.Component {
     const copyUserData = Object.assign({}, this.state.userData);
     copyUserData.image_url = url;
     this.setState({ userData: copyUserData });
+  }
+  logout() {
+    this.setState({ view: 'login', userData: null });
   }
   getUserData(userDataToGet) {
     fetch('/api/login.php', {
@@ -60,7 +64,7 @@ class App extends React.Component {
       return <Check userData={this.state.userData} setView={this.setView} />;
     }
     if (this.state.view === 'settings') {
-      return <Settings userData={this.state.userData} setView={this.setView} updateProfileImage={this.updateProfileImage} />;
+      return <Settings userData={this.state.userData} setView={this.setView} updateProfileImage={this.updateProfileImage} logout={this.logout}/>;
     }
   }
 

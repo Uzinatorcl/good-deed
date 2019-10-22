@@ -52,7 +52,7 @@ class Settings extends React.Component {
                 accept="image/png, image/jpeg" />
             </label>
             <button>ACCOUNT INFO</button>
-            <button>LOG OUT</button>
+            <button onClick={this.props.logout}>LOG OUT</button>
           </div>
         </div>
         <Footer setView={this.props.setView} />
