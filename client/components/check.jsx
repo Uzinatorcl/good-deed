@@ -163,6 +163,7 @@ class Check extends React.Component {
           image={commit.image_url}
           setDeed={this.setDeed}
           setView={this.setCheckDisplay}
+          newView={'deed'}
         />;
       })
     );

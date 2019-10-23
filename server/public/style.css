@@ -453,4 +453,8 @@ margin: 0;
   background-color: #0ec088;
   height: 65vh;
   border-radius: 25px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
