@@ -22,8 +22,8 @@ if(!$result) {
 }
 $commitId = mysqli_insert_id($conn);
 
-$messageQuery = "INSERT INTO `messages` (`commit_id`,`sending_user_id`,`recieving_user_id`,`message`)
-VALUES ($commitId, $userId, $recievingUserId, 'Hi, How can I help?')";
+$messageQuery = "INSERT INTO `messages` (`commit_id`,`sending_user_id`,`recieving_user_id`,`message`, `requesters_user_id`, `commiters_user_id`)
+VALUES ($commitId, $userId, $recievingUserId, 'Hi, How can I help?', $recievingUserId, $userId)";
 
 $messageResult = mysqli_query($conn, $messageQuery);
 

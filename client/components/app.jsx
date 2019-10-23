@@ -76,7 +76,7 @@ class App extends React.Component {
       return <Settings userData={this.state.userData} setView={this.setView} updateProfileImage={this.updateProfileImage} updateAccountInformation={this.updateAccountInformation} logout={this.logout}/>;
     }
     if (this.state.view === 'messages') {
-      return <Messages userData={this.state.userData} setView={this.setView} updateProfileImage={this.updateProfileImage} updateAccountInformation={this.updateAccountInformation} logout={this.logout} />;
+      return <Messages userData={this.state.userData} setView={this.setView} />;
     }
   }
 
