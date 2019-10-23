@@ -15,7 +15,7 @@ class Messages extends React.Component {
       currentMessages: null
     };
     this.changeView = this.changeView.bind(this);
-    this.renderMessages = this.renderMessages.bind(this);
+    this.getMessagesToRender = this.getMessagesToRender.bind(this);
   }
 
   changeView(newView) {
@@ -33,9 +33,13 @@ class Messages extends React.Component {
       });
   }
 
-  renderMessages(id) {
-    const currentMessages = this.state.messages.find(message => message.commit_id === id);
-    this.setState({ currentMessages: currentMessages }, () => console.log(this.state));
+  getMessagesToRender(id) {
+    const currentMessages = this.state.messages.filter(message => message.commit_id === id);
+    console.log(currentMessages);
+    currentMessages.forEach(yourMessage => {
+      yourMessage.image_url = yourMessage.sending_user_image_url;
+    });
+    this.setState({ currentMessages: currentMessages });
   }
 
   messagesDisplay() {
@@ -50,12 +54,28 @@ class Messages extends React.Component {
             commitId={deed.commit_id}
             headline={deed.headline}
             image={deed.image_url}
-            setDeed={this.renderMessages}
+            setDeed={this.getMessagesToRender}
             setView={this.changeView}
             newView={'messages'}
           />;
         })
       );
+    }
+    if (this.state.view === 'messages' && this.state.currentMessages === null) {
+      return 'loading messages...';
+    }
+    if (this.state.view === 'messages' && this.state.currentMessages !== null) {
+      return this.state.currentMessages.map(messagesToDisplay => {
+        return (
+          <MessageChats
+            key={messagesToDisplay.message_id}
+            yourUserId={this.props.userData.id}
+            sendingUserId={messagesToDisplay.sending_user_id}
+            image={messagesToDisplay.image_url}
+            message={messagesToDisplay.message}
+          />
+        );
+      });
     }
   }
 
