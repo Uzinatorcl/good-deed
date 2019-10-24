@@ -41,6 +41,10 @@ class App extends React.Component {
     this.setState({ view: 'login', userData: null });
   }
   getUserData(userDataToGet) {
+    if (!userDataToGet.username) {
+      openAlert({ message: 'Username cannot be blank', type: 'danger' });
+      return;
+    }
     fetch('/api/login.php', {
       method: 'POST',
       headers: {
