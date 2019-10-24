@@ -6,6 +6,7 @@ import Request from './request';
 import Check from './check';
 import Settings from './settings';
 import Messages from './messages';
+import Alert, { openAlert } from 'simple-react-alert';
 
 class App extends React.Component {
   constructor(props) {
@@ -47,14 +48,16 @@ class App extends React.Component {
       },
       body: JSON.stringify(userDataToGet)
     })
-      .then(response => response.json())
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('Invalid Login')))
       .then(data => {
         this.setState({ userData: data }, () => {
           if (this.state.userData !== null) this.setView('dashboard');
         }
         );
       })
-      .catch(error => console.error(error));
+      .catch(() => {
+        openAlert({ message: 'Invalid Username or Password', type: 'danger' });
+      });
   }
   display() {
     if (this.state.view === 'login') {
@@ -82,7 +85,13 @@ class App extends React.Component {
 
   render() {
     const pageToRender = this.display();
-    return pageToRender;
+
+    return (
+      <>
+      <Alert/>
+      {pageToRender}
+      </>
+    );
   }
 }
 

@@ -10,7 +10,11 @@ $query = "SELECT `user_id` AS id, `username`, `email`,`firstname`, `lastname`, `
 $result = mysqli_query($conn, $query);
 
 if(!$result) {
-  throw new Exception('Invalid username');
+  throw new Exception('Problem retrieving data ' . mysqli_error($conn));
+}
+
+if(!mysqli_num_rows($result)) {
+  throw new Exception('Invalid Username ' . mysqli_error($conn));
 }
 
 $userDataOutput = mysqli_fetch_assoc($result);
