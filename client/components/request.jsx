@@ -34,8 +34,7 @@ class Request extends React.Component {
       .then(() => {
         openAlert({ message: 'Your request has successfully been posted!', type: 'success' });
       })
-      .catch(e => {
-        console.log(e);
+      .catch(() => {
         openAlert({ message: 'There was an issue adding your request.', type: 'warning' });
       });
   }

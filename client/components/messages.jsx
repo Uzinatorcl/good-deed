@@ -8,6 +8,7 @@ import Alert, { openAlert } from 'simple-react-alert';
 class Messages extends React.Component {
   constructor(props) {
     super(props);
+    this.messagesContainerRef = React.createRef();
     this.state = {
       deeds: null,
       messages: null,
@@ -76,8 +77,9 @@ class Messages extends React.Component {
 
   getMessagesToRender(commitId) {
     const currentMessages = this.state.messages.filter(message => message.commit_id === commitId);
-    console.log(currentMessages);
-    this.setState({ currentMessages: currentMessages });
+    this.setState({ currentMessages: currentMessages }, () => {
+      this.messagesContainerRef.current.scrollTop = this.messagesContainerRef.current.scrollHeight;
+    });
   }
 
   messagesDisplay() {
@@ -136,7 +138,7 @@ class Messages extends React.Component {
       <Alert/>
       <Header/>
       <div className="heading">MESSAGES</div>
-      <div className="messagesContainer">
+      <div className="messagesContainer" ref={this.messagesContainerRef}>
         {display}
       </div>
       {messageInteraction}
