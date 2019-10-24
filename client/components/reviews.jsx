@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRatingComponent from 'react-star-rating-component';
 
 function Review(props) {
   return (
@@ -8,7 +9,7 @@ function Review(props) {
           <div className="reviewerUsername">{props.username}</div>
           <div className="categoryName">{props.category}</div>
           <div className="currentRating">
-            <img className="ratingImage" src={`images/ratings/${props.rating}.png`} alt="reviewers rating" />
+            <StarRatingComponent name="rating" editing={false} value={parseInt(props.rating)} />
           </div>
         </div>
         <div className="col-3">
