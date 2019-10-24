@@ -35,6 +35,14 @@ if (!$commitResult) {
   mysqli_query($conn, 'ROLLBACK');
   throw new Exception('There was an error deleting the commit ' . mysqli_error($conn));
 }
+$messageQuery = "DELETE FROM `messages` WHERE `commit_id` = $commitId";
+
+$messageResult = mysqli_query($conn, $messageQuery);
+
+if (!$messageResult) {
+  mysqli_query($conn, 'ROLLBACK');
+  throw new Exception('There was an error deleting the message history ' . mysqli_error($conn));
+}
 
 $completeQuery = "UPDATE `requests` SET `completed`=1 WHERE `request_id` = $requestId";
 

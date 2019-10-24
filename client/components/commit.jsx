@@ -5,6 +5,7 @@ import Categories from './categories';
 import DeedList from './deed-list';
 import Deed from './deed';
 import Alert, { openAlert } from 'simple-react-alert';
+import { request } from 'https';
 
 class Commit extends React.Component {
   constructor(props) {
@@ -74,12 +75,13 @@ class Commit extends React.Component {
       return 'loading deeds...';
     }
   }
-  userCommitToDeed(id) {
+  userCommitToDeed(requestId, requestersUserId) {
     fetch('api/commit_deed.php', {
       'method': 'POST',
       'body': JSON.stringify(
         {
-          'request_id': id,
+          'request_id': requestId,
+          'requesters_user_id': requestersUserId,
           'user_id': this.props.userData.id })
     })
       .then(response => response.ok ? response.json() : Promise.reject(new Error('You have already commited to this deed.')))
@@ -94,6 +96,7 @@ class Commit extends React.Component {
     if (this.state.deedToDisplay) {
       return <Deed
         username={this.state.deedToDisplay.user_id}
+        requestersId={this.state.deedToDisplay.request_user_id}
         image={this.state.deedToDisplay.image_url}
         headline={this.state.deedToDisplay.headline}
         summary={this.state.deedToDisplay.summary}

@@ -2,7 +2,7 @@ import React from 'react';
 
 function CheckCommits(props) {
   return (
-    <div onClick={() => { props.setDeed(props.commitId); props.setView('deed'); }} className="checkCommits">
+    <div onClick={() => { props.setDeed(props.commitId); props.setView(props.newView); }} className="checkCommits">
       <div className="checkCommitsHeadline">
         {props.headline}
       </div>
