@@ -27,12 +27,16 @@ class Request extends React.Component {
       .catch(error => console.error(error));
   }
   sendRequestToServer(request) {
+    if (!request.headline || !request.summary || !request.zipcode) {
+      openAlert({ message: 'Your request has missing fields.', type: 'warning' });
+      return;
+    }
     fetch('api/deeds.php', {
       method: 'POST',
       body: JSON.stringify(request)
     }).then(response => response.ok ? response : Promise.reject(new Error('There was an issue adding a request.')))
       .then(() => {
-        openAlert({ message: 'Your request has successfully been posted!', type: 'success' });
+        this.props.setView('check');
       })
       .catch(() => {
         openAlert({ message: 'There was an issue adding your request.', type: 'warning' });

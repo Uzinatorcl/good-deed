@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import Review from './reviews';
 import DashFooter from './dash-footer';
+import StarRatingComponent from 'react-star-rating-component';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class Dashboard extends React.Component {
               <div className="userName">{this.props.userData.username}</div>
               <div className="totalReviews"><span>{totalReviews}</span> Reviews</div>
               <div className="currentRating">
-                <img src={`images/ratings/${reviewStars}.png`} alt="your rating"/>
+                <StarRatingComponent name="rating" editing={false} value={reviewStars} />
               </div>
             </div>
             <div className="col-3">

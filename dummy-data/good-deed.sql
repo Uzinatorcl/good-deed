@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 18, 2019 at 08:24 PM
+-- Generation Time: Oct 24, 2019 at 11:25 AM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -64,23 +64,60 @@ CREATE TABLE `commits` (
 --
 
 INSERT INTO `commits` (`commit_id`, `request_id`, `commit_user_id`) VALUES
-(1, 7, 1),
-(5, 8, 1),
-(3, 9, 1),
-(8, 10, 1),
-(9, 16, 1),
-(11, 17, 1),
-(14, 18, 1),
-(59, 19, 1),
-(19, 22, 1),
-(40, 28, 1),
-(42, 29, 1),
-(56, 30, 1),
-(47, 31, 1),
-(53, 32, 1),
-(48, 33, 1),
-(57, 35, 1),
-(43, 36, 1);
+(71, 8, 1),
+(72, 9, 1),
+(73, 10, 1),
+(74, 11, 1),
+(75, 12, 1),
+(79, 25, 3),
+(77, 58, 3),
+(78, 60, 3),
+(80, 61, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `message_id` int(10) UNSIGNED NOT NULL,
+  `commit_id` int(10) UNSIGNED NOT NULL,
+  `sending_user_id` int(10) UNSIGNED NOT NULL,
+  `recieving_user_id` int(10) UNSIGNED NOT NULL,
+  `message` text NOT NULL,
+  `requesters_user_id` int(10) UNSIGNED NOT NULL,
+  `commiters_user_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`message_id`, `commit_id`, `sending_user_id`, `recieving_user_id`, `message`, `requesters_user_id`, `commiters_user_id`) VALUES
+(3, 71, 1, 20, 'Hi, How can I help?', 20, 1),
+(4, 72, 1, 21, 'Hi, How can I help?', 21, 1),
+(5, 73, 1, 19, 'Hi, How can I help?', 19, 1),
+(6, 74, 1, 22, 'Hi, How can I help?', 22, 1),
+(7, 75, 1, 23, 'Hi, How can I help?', 23, 1),
+(9, 77, 3, 1, 'Hi, How can I help?', 1, 3),
+(10, 78, 3, 1, 'Hi, How can I help?', 1, 3),
+(11, 79, 3, 32, 'Hi, How can I help?', 32, 3),
+(12, 80, 1, 3, 'Hi, How can I help?', 3, 1),
+(13, 80, 3, 1, 'Yea bro my tire flew off where you at', 3, 1),
+(14, 80, 1, 3, 'Yea I\'m right off the 405 if you need something done.', 3, 1),
+(15, 80, 3, 1, 'Well what time can you come by?', 3, 1),
+(16, 80, 1, 3, 'Im currently at learningFuze, I get out of work in 20 minutes, where do you want to meet up?', 3, 1),
+(17, 80, 3, 1, 'Well I dont know where it went , do you have another tire?', 3, 1),
+(18, 80, 1, 3, 'I dont have another tire here', 3, 1),
+(19, 80, 3, 1, 'can you get another tire though', 3, 1),
+(20, 80, 1, 3, 'No I cant go get another tire', 3, 1),
+(21, 80, 3, 1, 'Im gonna give you a one star if you dont.', 3, 1),
+(22, 80, 1, 3, 'Well I dont care if you do.', 3, 1),
+(23, 80, 1, 3, 'So you dont want it orrr', 3, 1),
+(24, 80, 3, 1, 'I still want to but my friend mitch is coming', 3, 1),
+(25, 80, 1, 3, 'whos mitch', 3, 1),
+(26, 80, 3, 1, 'Yo pls come help', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -139,10 +176,13 @@ INSERT INTO `requests` (`request_id`, `category_id`, `headline`, `summary`, `req
 (34, 10, 'my chickens aint eatin', 'My chickens aint eatin the feed i got them.  If anyone has chicken feed they can donate, I would really appreciate it', 38, b'0', '92618'),
 (35, 10, 'trying to party', 'im new to irvine, and looking to have some fun on the weekend!', 16, b'0', '92618'),
 (36, 10, 'need new recipes', 'I was a cook for seven years, been meaning to try new foods and cook some for my children.  If you have any recipes send them my way.', 17, b'0', '92618'),
-(49, 1, 'sadfasdfasd', 'asdfasdfa sdf asdf asd asdfasdf sadf asdf', 1, b'0', '90638'),
-(50, 5, 'sadfasdf', 'asdfasdf asdf asdf asdf asdfsda f asdf asdfsa df ', 1, b'0', '92881'),
-(51, 7, 'im cray-c', 'hreger derger lerger burger merger herhererherger', 1, b'0', '92881'),
-(52, 1, 'fasdfasd', 'dsfgsdfgsdf gsdfgsdfgsd', 1, b'0', '45353');
+(54, 1, 'help', 'asdafasvasd asd asd asdfa sdjfhlkjadsfh asdfhalskdjhflaksdf asdhvabv hbvcbzvjhxbv a fsdhfaisdygf asdgashdfui asdhfashdf asudhfasudhf sadfh asdhf asduhf asuidhf asiudfh aiusdfh ausidf hasoiudfh aisoudhf aousidfh asiudfh aisoudfh asiudfhi asuodhfiuasdhfaosiudhf aiousdhfiuaos dfhiuashd foiuashdf iuashdfoiuahsdoifuh asudhf ouahd foiuhas oduifh', 1, b'1', '92881'),
+(56, 9, 'sfsdfsdf', 'adsfj;lasi df aids aiosdjfioasjdfoiajsdfuvnasjb s dsauhdf nakjcbnkljxcnvlkjznlkj nzkljn j ashdfn auhsksdjnc kj nahdlkjncklzjnx,cnv a sdlkfhnuicn ahdnfiuah nashdnfuias fhasdu hfkjn hdfkjnnxkjsdkj', 1, b'1', '92881'),
+(57, 1, 'car wont pass smog', 'need some help from someone that can help me get my car to pass smog, because shop wants to change me $$$, thank u', 1, b'1', '92881'),
+(58, 2, 'trying to host event at park', 'looking to host a get together at the park, need new people to hang out and bbq', 1, b'0', '92881'),
+(59, 3, 'graphics card wont read', 'I think my motherboard doesnt support my new graphics card, need some help putting it together', 1, b'1', '92881'),
+(60, 4, 'dfgdfgs', '', 1, b'0', '92881'),
+(61, 1, 'My cars tire flew off', 'Please send help, find me my tire.', 3, b'0', '92881');
 
 -- --------------------------------------------------------
 
@@ -169,7 +209,11 @@ INSERT INTO `reviews` (`review_id`, `rating`, `review_message`, `sending_user_id
 (3, 5, 'Dan came by my house and drove me to the pet store, it was an amazing time.  Aiko and I made a new friend!', 4, 1, 3),
 (4, 5, 'For some reason I can never find anyone that uses that ubuntu os, thank god dan came and helped me fix my laptop', 5, 1, 4),
 (5, 5, 'yo dan came by my house with a plunger and wet suit.  Really fixed up the place, come by next time dan we gon get litty', 6, 1, 5),
-(6, 3, 'dan was able to get me to quit smoking, but he yelled at me afterwards and that made me want to smoke again', 7, 1, 6);
+(6, 3, 'dan was able to get me to quit smoking, but he yelled at me afterwards and that made me want to smoke again', 7, 1, 6),
+(7, 5, 'Thanks tarun!', 1, 3, 54),
+(8, 5, 'Mitch came by in an orderly fashion and fixed up my computer and its better than ever!', 1, 13, 59),
+(9, 5, 'Tarun came by again and did an incredible job, thanks sir!', 1, 3, 56),
+(10, 5, 'thanks james!', 1, 17, 57);
 
 -- --------------------------------------------------------
 
@@ -193,7 +237,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `firstname`, `lastname`, `zipcode`, `image_url`) VALUES
-(1, 'dantheman', NULL, 'daniel.paschal@gmail.com', 'daniel', 'paschal', '92618', 'images/dan.png'),
+(1, 'dantheman', NULL, 'daniel.paschal@gmail.com', 'daniel', 'paschal', '92618', 'images/5dae75ede6fc7IMG_1964.JPG'),
 (2, 'ayyyron', NULL, 'aaron.domingo@gmail.com', 'aaron', 'domingo', '92618', 'images/aaron.png'),
 (3, 'taruntula', NULL, 'tarun.padath@gmail.com', 'tarun', 'padath', '92618', 'images/taruntula.png'),
 (4, 'ads', NULL, 'adison.lay@gmail.com', 'adison', 'lay', '92618', 'images/ads.png'),
@@ -251,6 +295,12 @@ ALTER TABLE `commits`
   ADD UNIQUE KEY `unique_commit` (`request_id`,`commit_user_id`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_id`);
+
+--
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
@@ -282,17 +332,22 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `commits`
 --
 ALTER TABLE `commits`
-  MODIFY `commit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `commit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `request_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `request_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `review_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `users`
 --

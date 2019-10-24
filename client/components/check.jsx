@@ -215,7 +215,8 @@ class Check extends React.Component {
     fetch(`api/user_requests_commits.php?id=${this.props.userData.id}`)
       .then(response => response.json())
       .then(data => {
-        this.setState({ userRequests: data.requests, userCommits: data.commits });
+        const requests = data.requests.reverse();
+        this.setState({ userRequests: requests, userCommits: data.commits });
       })
       .catch(error => console.error(error));
   }
@@ -229,15 +230,16 @@ class Check extends React.Component {
     if (this.state.userRequests !== null && this.state.view === 'requests') {
       return this.generateUsersRequests();
     }
-    if (this.state.userCommits !== null && this.state.view === 'commits') {
-      return this.generateUsersCommits();
-    }
     if (this.state.userCommits === null && this.state.view === 'commits') {
       return 'loading commits...';
     }
     if (this.state.userCommits.length === 0 && this.state.view === 'commits') {
       return 'You have no commits';
     }
+    if (this.state.userCommits !== null && this.state.view === 'commits') {
+      return this.generateUsersCommits();
+    }
+
     if (this.state.view === 'deed') {
       return this.generateDeed();
     }
