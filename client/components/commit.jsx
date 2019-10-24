@@ -33,7 +33,7 @@ class Commit extends React.Component {
       .catch(error => console.error(error));
   }
   getDeeds(categoryId) {
-    fetch(`api/deeds.php?id=${categoryId}`)
+    fetch(`api/deeds.php?catid=${categoryId}&id=${this.props.userData.id}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ deedList: data, deedListFetchCompleted: true });
@@ -95,7 +95,7 @@ class Commit extends React.Component {
   generateDeed() {
     if (this.state.deedToDisplay) {
       return <Deed
-        username={this.state.deedToDisplay.user_id}
+        username={this.state.deedToDisplay.username}
         requestersId={this.state.deedToDisplay.request_user_id}
         image={this.state.deedToDisplay.image_url}
         headline={this.state.deedToDisplay.headline}

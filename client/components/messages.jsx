@@ -37,6 +37,7 @@ class Messages extends React.Component {
       });
   }
   sendMessage() {
+    if (!this.state.messageBody) return;
     const [messageData] = this.state.currentMessages;
     const { commit_id, commiters_user_id, requesters_user_id } = messageData;
     let recievingUserId;
