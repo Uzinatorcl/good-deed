@@ -3,22 +3,22 @@ import React from 'react';
 function MessageChats(props) {
   if (props.yourUserId === props.sendingUserId) {
     return (
-      <div className="checkCommits">
-        <div className="checkCommitsHeadline">
+      <div className="chatMessage">
+        <div className="chatMessageText">
           {props.message}
         </div>
-        <div className="checkCommitsImageContainer">
-          <img className="checkCommitsImage" src={props.image} alt="your profile image" />
+        <div className="chatMessageImageContainer">
+          <img className="chatMessageImage" src={props.image} alt="your profile image" />
         </div>
       </div>
     );
   } else {
     return (
-      <div className="checkCommits">
-        <div className="checkCommitsImageContainer">
-          <img className="checkCommitsImage" src={props.image} alt="your profile image" />
+      <div className="chatMessage">
+        <div className="chatMessageImageContainer">
+          <img className="chatMessageImage" src={props.image} alt="your profile image" />
         </div>
-        <div className="checkCommitsHeadline">
+        <div className="chatMessageText">
           {props.message}
         </div>
       </div>

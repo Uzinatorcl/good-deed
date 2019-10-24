@@ -343,7 +343,7 @@ margin: 0;
   height: 68vh;
   overflow: auto;
 }
-.checkRequest, .checkCommits, .checkComplete {
+.checkRequest, .checkCommits, .checkComplete, .chatMessage {
   width: 95%;
   padding: 10px;
   background-color: #D5DDDA;
@@ -366,13 +366,13 @@ margin: 0;
   font-size: 135%;
   font-family: 'Asap', sans-serif;
 }
-.checkRequestButtonContainer, .checkCommitsImageContainer, .checkCompleteImageContainer {
+.checkRequestButtonContainer, .checkCommitsImageContainer, .checkCompleteImageContainer, .chatMessageImageContainer {
   width: 20%;
   display: flex;
   justify-content: center;
   font-size: 180%;
 }
-.checkCommitsImage, .checkCompleteImage {
+.checkCommitsImage, .checkCompleteImage , .chatMessageImage {
   max-height:80%;
   max-width: 80%;
   object-fit: fill;
@@ -457,4 +457,35 @@ margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+}
+
+.chatMessageText {
+  width: 80%;
+  font-size: 120%;
+  text-align: left;
+}
+.messageButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.messagesInteraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+}
+.sendMessage {
+  width: 80%;
+  margin-top: 5px;
+  padding: 2px;
+  border-style: none;
+  border-radius: 25px;
+}
+.messageButtonContainer > * {
+  font-size: 2rem;
+  width: 30%;
+  height: 80%;
 }

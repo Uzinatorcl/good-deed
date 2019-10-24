@@ -6,8 +6,7 @@ require_once('db_connection.php');
 $userId = intVal($_GET['id']);
 
 $messageQuery = "SELECT M.`message_id`, M.`commit_id`, M.`sending_user_id`, M.`recieving_user_id`, M.`message`, M.`requesters_user_id`, M.`commiters_user_id`,
-(SELECT `image_url` FROM `users` WHERE `user_id` = M.`sending_user_id`) AS sending_user_image_url,
-(SELECT `image_url` FROM `users` WHERE `user_id` = M.`recieving_user_id`) AS recieving_user_image_url
+(SELECT `image_url` FROM `users` WHERE `user_id` = M.`sending_user_id`) AS sending_user_image_url
 FROM `messages` AS M
 WHERE requesters_user_id = $userId OR commiters_user_id = $userId";
 
