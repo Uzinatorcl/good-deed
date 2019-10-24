@@ -1,0 +1,15 @@
+//REQUEST
+{
+  "username": "dantheman",
+  "password": ""
+}
+//RESPONSE
+{
+  "id": 1,
+  "username": "dantheman",
+  "email": "daniel.paschal@gmail.com",
+  "firstname": "daniel",
+  "lastname": "paschal",
+  "zipcode": 92618,
+  "image_url": "NULL",
+}

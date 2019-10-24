@@ -1,0 +1,490 @@
+body {
+  background-color: rgb(235, 235, 235);
+   font-family: 'DecovarRegular24TermA';
+   font-weight: normal;
+   font-style: normal;
+}
+button {
+  background-color: #0ec088;
+font-size: 40px;
+color: white;
+border-radius: 29px;
+width: 189px;
+height: 77px;
+border-style: none;
+cursor: pointer;
+}
+.container {
+  padding: 0
+}
+.loginHeader {
+  margin-top: 55px;
+  color: white;
+}
+.loginHeader > h1 {
+  color: #0ec088;
+  font-size: 400%;
+  line-height: 79px;
+}
+.loginContainer {
+  text-align: center;
+}
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.buttonContainer > * {
+  margin-top: 20px;
+}
+.dailyQuote {
+  font-size: 150%;
+}
+.loginForm {
+  background-color: #0ec088;
+  border-radius: 25px;
+}
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.loginFormBox {
+  text-align: center;
+  border-radius: 55px;
+border-style: none;
+width: 243px;
+height: 61px;
+background-color: #C4C4C4;
+color: white;
+font-size: 40px;
+margin: 20px;
+}
+.mainHeader {
+  background-color: #0ec088;
+  width: 375px;
+  height: 85px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mainHeader > * {
+  text-align: center;
+  font-size: 48px;
+  color: white;
+}
+.userProfile {
+  width: 328px;
+  height: 106px;
+  margin: 10px 23px 10px;
+  border-radius: 25px;
+  background-color: #0ec088;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.userInfo {
+  text-align: center;
+  font-family: 'Asap', sans-serif;
+  line-height: 24px;
+}
+.userName {
+  font-size: 32px;
+}
+.totalReviews {
+  font-size: 18px;
+  color: white;
+}
+.userImage {
+  width: 58px;
+}
+.heading {
+  color: #0ec088;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 10px;
+}
+.reviewsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0ec088;
+  border-radius: 25px;
+  height: 472px;
+  overflow: auto;
+}
+.reviewersProfile {
+  width: 291px;
+  height: 76px;
+  background-color: #D5DDDA;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 0;
+}
+.reviewerImage {
+  width: 44px;
+}
+.reviewerInfo {
+  text-align: center;
+  font-family: 'Asap', sans-serif;
+  line-height: 24px;
+}
+.ratingImage {
+  height: 28px;
+}
+.reviewerUsername {
+  font-size: 28px;
+}
+.categoryName {
+  font-size: 18px;
+  color: black;
+  text-transform: uppercase;
+}
+.dashboardNavi {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px
+}
+.leftArrow, .rightArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 57px;
+  width: 57px;
+  font-size: 57px;
+  color: #0ec088;
+}
+.categoryList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.category {
+  color: white;
+  background-color: #0ec088;
+  font-size: 32px;
+  margin: 5px 0;
+  border-radius: 25px;
+  width: 90%;
+}
+.mainFooter {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 7vh;
+  background-color: #0ec088;
+  color: white;
+  text-align: center;
+  font-size: 36px;
+}
+.deedListContainer {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0ec088;
+  border-radius: 25px;
+  height: 490px;
+  overflow: auto;
+}
+.deedList {
+  width: 291px;
+  height: 76px;
+  background-color: #D5DDDA;
+  border-radius: 25px;
+   display: flex;
+   align-items: center;
+  justify-content: center;
+  margin: 5px 0;
+}
+.requesterImage {
+  width: 44px;
+}
+.requestImageContainer {
+  box-sizing: border-box;
+}
+.userHeadlineInfo {
+  text-align: center;
+  align-self: center;
+  font-family: 'Asap', sans-serif;
+  line-height: 24px;
+  width: 100%;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+.deedContainer {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0ec088;
+  border-radius: 25px;
+  height: 520px;
+  overflow: auto;
+}
+.userLocation,.userSummary {
+  box-sizing: border-box;
+  text-align: center;
+  width: 90%;
+  border-radius: 25px;
+  background-color: #D5DDDA;
+  font-size: 19px;
+  padding: 5px;
+  margin: 5px;
+}
+.userSummary {
+  height: 100%;
+  overflow: auto;
+}
+.deedUsername {
+  font-size: 120%;
+  font-family: 'DecovarRegular24TermA';
+   font-weight: bold;
+   font-style: normal;
+}
+.deedInfoContainer {
+  align-items: center;
+}
+.deedButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30%;
+  margin: 30px 0;
+}
+.deedButtonContainer > * {
+  margin: 0 10px;
+  padding: 10px;
+  width: 50%;
+  border: 2px solid white;
+}
+
+.hidden {
+  visibility: hidden;
+}
+.selected {
+  background-color: white;
+  color: #0ec088;
+}
+.Alert-text {
+  font-family: 'DecovarRegular24TermA';
+   font-weight: bold;
+   font-style: normal;
+   text-transform: uppercase;
+   text-align: center;
+   font-size: 150%;
+}
+
+.requestForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.requestForm > * {
+  border-style: none;
+  width: 90%;
+  margin: 10px;
+  text-align: center;
+  border-radius: 25px;
+  height: 130%;
+  font-size: 1.6rem;
+}
+.accountFormContainer {
+  margin-top: 33%;
+}
+.accountInfoForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.accountInfoForm > * {
+  border-style: none;
+  width: 90%;
+  margin: 10px;
+  text-align: center;
+  border-radius: 25px;
+  height: 130%;
+  font-size: 1.6rem;
+}
+.requestBoxSummary {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.summaryLabel {
+margin: 0;
+}
+.checkDeedButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+.checkDeedButtonContainer > * {
+  margin: 0 10px;
+  width: 50%;
+  height: 50%;
+  font-size: 160%;
+}
+.checkContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0ec088;
+  border-radius: 25px;
+  height: 68vh;
+  overflow: auto;
+}
+.checkRequest, .checkCommits, .checkComplete, .chatMessage {
+  width: 95%;
+  padding: 10px;
+  background-color: #D5DDDA;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  text-align: center;
+}
+.checkRequestHeadline, .checkCommitsHeadline, .checkCompleteUsername {
+  width: 80%;
+  font-size: 120%;
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.checkCompleteUsername {
+  font-weight: bold;
+  font-size: 135%;
+  font-family: 'Asap', sans-serif;
+}
+.checkRequestButtonContainer, .checkCommitsImageContainer, .checkCompleteImageContainer, .chatMessageImageContainer {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  font-size: 180%;
+}
+.checkCommitsImage, .checkCompleteImage , .chatMessageImage {
+  max-height:80%;
+  max-width: 80%;
+  object-fit: fill;
+}
+.checkRequestCompleteIcon {
+  color: #0ec088;
+  margin: 0;
+}
+.checkRequestDeleteIcon {
+  color: red;
+  margin: 0 10px;
+}
+.ratingContainer {
+  margin: 0;
+  font-size: 5vh;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reviewButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+.reviewButtonContainer > * {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid white;
+}
+.settingsButtonContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  height: 60vh;
+}
+.settingsButtonContainer > * {
+  margin: 10px;
+  padding: 10px;
+}
+.userImageContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.userImageSettings {
+  width: 15vh;
+}
+.updatePhotoButton {
+  width: 100%;
+  margin: auto;
+  margin-top: 100px;
+}
+.accountInfoButton, .logoutButton {
+  width: 90%;
+  margin: auto;
+}
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+}
+
+.fileContainer [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+.messagesContainer {
+  background-color: #0ec088;
+  height: 65vh;
+  border-radius: 25px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatMessageText {
+  width: 80%;
+  font-size: 120%;
+  text-align: left;
+}
+.messageButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.messagesInteraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+}
+.sendMessage {
+  width: 80%;
+  margin-top: 5px;
+  padding: 2px;
+  border-style: none;
+  border-radius: 25px;
+}
+.messageButtonContainer > * {
+  font-size: 2rem;
+  width: 30%;
+  height: 80%;
+}

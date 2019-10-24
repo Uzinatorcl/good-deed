@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react-confirm-alert": "2.4.1",
+    "react-dom": "16.8.6",
+    "react-star-rating-component": "1.4.1",
+    "react-transition-group": "4.3.0",
+    "simple-react-alert": "1.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",

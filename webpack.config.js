@@ -35,6 +35,11 @@ module.exports = {
     historyApiFallback: true,
     watchContentBase: true,
     stats: 'minimal',
+    watchOptions: {
+      ignored: [
+        path.resolve(__dirname, 'server/public/images')
+      ]
+    },
     proxy: {
       '/api': {
         target: 'http://localhost',

@@ -1,0 +1,18 @@
+[
+  {
+    "commit_id": 68,
+    "sending_user_id": 1,
+    "recieving_user_id": 8,
+    "recieving_image_url": "images/dsfasdfasdfvsd.jpg",
+    "sending_image_url": "images/.jpg",
+    "message": "Hi, How can I help you?"
+  },
+  {
+    "commit_id": 68,
+    "sending_user_id": 8,
+    "recieving_user_id": 1,
+    "recieving_image_url": "images/sdfaasfgagsgs.jpg",
+    "sending_image_url": "images/dsfasdfasdfvsd.jpg",
+    "message": "Dude pls come help me"
+  }
+]
