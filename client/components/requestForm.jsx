@@ -1,4 +1,5 @@
 import React from 'react';
+import Alert, { openAlert } from 'simple-react-alert';
 
 class RequestForm extends React.Component {
   constructor(props) {
@@ -25,14 +26,19 @@ class RequestForm extends React.Component {
         lat: position.coords.latitude,
         long: position.coords.longitude }, () => {
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.lat},${this.state.long}&key=AIzaSyA93u-gCVeeTT8nby7oIc2swhkQcPuBsDE`)
-          .then(response => response.json())
+          .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an error retrieving your current location')))
           .then(data => {
-            const zipcode = data.results[0].address_components.find(result => {
+            let zipcode = data.results[0].address_components.find(result => {
               return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(result.short_name);
             }).short_name;
+            if (zipcode.length !== 5) {
+              zipcode = '00000';
+            }
             this.setState({ zipcode: zipcode, gotUserLocation: true });
+          })
+          .catch(() => {
+            openAlert({ message: 'There was an issue retrieving your location.', type: 'warning' });
           });
-
       });
     });
   }
@@ -43,12 +49,15 @@ class RequestForm extends React.Component {
       'user_id': this.props.userId,
       'headline': this.state.headline,
       'zipcode': this.state.zipcode,
-      'summary': this.state.summary
+      'summary': this.state.summary,
+      'latitude': this.state.lat,
+      'longitude': this.state.long
     };
     this.setState({
       headline: '',
       zipcode: '',
-      summary: ''
+      summary: '',
+      gotUserLocation: false
     });
     this.props.requestCallback(request);
   }
@@ -66,6 +75,7 @@ class RequestForm extends React.Component {
     const currentLocationButton = this.state.gotUserLocation ? this.state.zipcode : 'GET CURRENT LOCATION';
     return (
       <div className="requestContainer">
+        <Alert />
         <div className="heading">REQUEST INFO</div>
         <div className="requestFormContainer">
           <form className="requestForm">
