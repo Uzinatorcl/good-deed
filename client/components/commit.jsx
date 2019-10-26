@@ -17,12 +17,15 @@ class Commit extends React.Component {
       categoryFetchCompleted: false,
       categoryToDisplay: null,
       deedListFetchCompleted: false,
-      deedToDisplay: null
+      deedToDisplay: null,
+      currentLocation: null,
+      gotUserLocation: false
     };
     this.changeCommitView = this.changeCommitView.bind(this);
     this.getDeeds = this.getDeeds.bind(this);
     this.getDeedToDisplay = this.getDeedToDisplay.bind(this);
     this.userCommitToDeed = this.userCommitToDeed.bind(this);
+    this.getUserLocation = this.getUserLocation.bind(this);
   }
   componentDidMount() {
     fetch('api/categories.php')
@@ -32,8 +35,23 @@ class Commit extends React.Component {
       })
       .catch(error => console.error(error));
   }
+  getUserLocation() {
+    navigator.geolocation.getCurrentPosition(position => {
+      const location = {};
+      location.lat = position.coords.latitude;
+      location.long = position.coords.longitude;
+      this.setState({ currentLocation: location, gotUserLocation: true }, () => console.log(this.state.currentLocation));
+    });
+  }
   getDeeds(categoryId) {
-    fetch(`api/deeds.php?catid=${categoryId}&id=${this.props.userData.id}`)
+    this.setState({ categoryToDisplay: categoryId });
+    let fetchRequest;
+    if (!this.state.gotUserLocation) {
+      fetchRequest = `api/deeds.php?catid=${categoryId}&id=${this.props.userData.id}`;
+    } else {
+      fetchRequest = `api/deeds.php?catid=${categoryId}&id=${this.props.userData.id}&lat=${this.state.currentLocation.lat}&long=${this.state.currentLocation.lat}`;
+    }
+    fetch(fetchRequest)
       .then(response => response.json())
       .then(data => {
         this.setState({ deedList: data, deedListFetchCompleted: true });
@@ -60,13 +78,12 @@ class Commit extends React.Component {
     if (this.state.deedListFetchCompleted) {
       return (
         <div className="container">
-          <div className="heading">DEEDS</div>
           <div className="deedListContainer">
             {this.state.deedList.map(deed => {
               return <DeedList key={deed.request_id} id={deed.request_id} getDeed={this.getDeedToDisplay} headline={deed.headline} image_url={deed.image_url}/>;
             })}
           </div>
-          <div className="buttonContainer">
+          <div className="deedListButtonContainer">
             <button onClick={() => this.changeCommitView('categoryList')}>BACK</button>
           </div>
         </div>
@@ -126,12 +143,29 @@ class Commit extends React.Component {
         return this.generateDeed();
     }
   }
+  deedViewNavigation() {
+    function selectedButton(view) {
+      if (view === 'deedList') return ['selected', ''];
+      if (view === 'map') return ['', 'selected'];
+      return ['', ''];
+    }
+    const selected = selectedButton(this.state.view);
+    return (
+      <div className="deedNavigationHeader">
+        <button onClick={() => this.changeCommitView('deedList')} className={`deedListButton ${selected[0]}`}>LIST</button>
+        <button onClick={this.getUserLocation} className="deedListLocation fas fa-map-marker-alt"></button>
+        <button onClick={() => this.changeCommitView('map')} className={`deedListButton ${selected[1]}`}>MAP</button>
+      </div>
+    );
+  }
   render() {
     const display = this.commitDisplay();
+    const deedNavigation = this.state.view === 'deedList' || this.state.view === 'map' ? this.deedViewNavigation() : '';
     return (
       <div className="container">
         <Alert />
         <Header />
+        {deedNavigation}
         {display}
         <Footer setView={this.props.setView} />
       </div>

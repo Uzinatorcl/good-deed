@@ -14,8 +14,8 @@ $userId = intval($requestData['user_id']);
 $headline = addSlashes($requestData['headline']);
 $zipcode = addSlashes($requestData['zipcode']);
 $summary = addSlashes($requestData['summary']);
-$latitude = intval($requestData['latitude']);
-$longitude = intval($requestData['longitude']);
+$latitude = floatval($requestData['latitude']);
+$longitude = floatval($requestData['longitude']);
 
 $query = "INSERT INTO `requests` (`category_id`,`request_user_id`,`headline`,`zipcode`, `summary`, `latitude`, `longitude`)
 VALUES ($categoryId , $userId , '{$headline}' , '{$zipcode}' , '{$summary}', $latitude, $longitude)";

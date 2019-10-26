@@ -25,7 +25,7 @@ class RequestForm extends React.Component {
       this.setState({
         lat: position.coords.latitude,
         long: position.coords.longitude }, () => {
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.lat},${this.state.long}&key=AIzaSyA93u-gCVeeTT8nby7oIc2swhkQcPuBsDE`)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.lat},${this.state.long}&key=`)
           .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an error retrieving your current location')))
           .then(data => {
             let zipcode = data.results[0].address_components.find(result => {
