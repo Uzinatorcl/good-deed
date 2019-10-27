@@ -532,7 +532,10 @@ margin: 0;
 .userMarker {
   background-image: url('images/markers/user-marker.png');
 }
-.deedMarker, .userMarker {
+.deedMarkerButton {
+  background-image: url('images/markers/deed-marker-button.png');
+}
+.deedMarker, .userMarker, .deedMarkerButton {
   width: 40px;
   height: 40px;
   background-size: contain;
@@ -577,4 +580,27 @@ margin: 0;
   width: 60%;
   margin-top: 5px;
   padding:0;
+}
+
+.dashFooterButtonContainer {
+  display: flex;
+  margin-top: 5px;
+  height: 10vh;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.dashFooterButtonContainer > * {
+  height: 100%;
+  width: 19%;
+  background-color: #0ec088;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-position: center;
+  color: white;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  background-origin: content-box;
 }
