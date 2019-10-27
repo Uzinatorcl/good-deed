@@ -12,14 +12,14 @@ if($locationDataRecieved) {
 
   $longitude = floatval($_GET['long']);
 
-  $query = "SELECT R.`request_id`, R.`category_id`, R.`headline`, R.`summary`, R.`request_user_id`, R.`completed`,R.`latitude`,R.`longitude`, U.`username`, U.`zipcode`, U.`image_url`,
+  $query = "SELECT R.`request_id`, R.`category_id`, R.`headline`, R.`zipcode`, R.`summary`, R.`request_user_id`, R.`completed`,R.`latitude`,R.`longitude`, U.`username`, U.`image_url`,
   CEIL((SELECT ST_Distance_Sphere(point(R.`longitude`, R.`latitude`), point($longitude, $latitude)))*0.000621371192) < 10 AS near
   FROM `requests` AS R
   JOIN `users` AS U
   ON U.`user_id` = R.`request_user_id`
   WHERE  R.`completed` != 1 && R.`request_user_id` != 1 && R.`category_id` = 1 ";
 } else {
-  $query = "SELECT R.`request_id`, R.`category_id`, R.`headline`, R.`summary`, R.`request_user_id`, R.`completed`,R.`latitude`,R.`longitude`, U.`username`, U.`zipcode`, U.`image_url`
+  $query = "SELECT R.`request_id`, R.`category_id`, R.`headline`, R.`zipcode`, R.`summary`, R.`request_user_id`, R.`completed`,R.`latitude`,R.`longitude`, U.`username`, U.`image_url`
   FROM `requests` AS R
   JOIN `users` AS U
   ON U.`user_id` = R.`request_user_id`
