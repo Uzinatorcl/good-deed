@@ -17,7 +17,7 @@ if($locationDataRecieved) {
   FROM `requests` AS R
   JOIN `users` AS U
   ON U.`user_id` = R.`request_user_id`
-  WHERE  R.`completed` != 1 && R.`request_user_id` != 1 && R.`category_id` = 1 ";
+  WHERE  R.`completed` != 1 && R.`request_user_id` != {$user_id} && R.`category_id` = {$cat_id} ";
 } else {
   $query = "SELECT R.`request_id`, R.`category_id`, R.`headline`, R.`zipcode`, R.`summary`, R.`request_user_id`, R.`completed`,R.`latitude`,R.`longitude`, U.`username`, U.`image_url`
   FROM `requests` AS R
