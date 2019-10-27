@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "google-map-react": "1.1.5",
     "react": "16.8.6",
     "react-confirm-alert": "2.4.1",
     "react-dom": "16.8.6",

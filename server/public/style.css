@@ -518,3 +518,11 @@ margin: 0;
   font-size: 2rem;
   height: 6vh;
 }
+.awaitingUserLocation {
+  display: flex;
+  height: 77vh;
+  text-align: center;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+}

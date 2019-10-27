@@ -4,6 +4,7 @@ import Footer from './footer';
 import Categories from './categories';
 import DeedList from './deed-list';
 import Deed from './deed';
+import Map from './map';
 import Alert, { openAlert } from 'simple-react-alert';
 import { request } from 'https';
 
@@ -39,8 +40,8 @@ class Commit extends React.Component {
     navigator.geolocation.getCurrentPosition(position => {
       const location = {};
       location.lat = position.coords.latitude;
-      location.long = position.coords.longitude;
-      this.setState({ currentLocation: location, gotUserLocation: true }, () => console.log(this.state.currentLocation));
+      location.lng = position.coords.longitude;
+      this.setState({ currentLocation: location, gotUserLocation: true }, () => this.getDeeds(this.state.categoryToDisplay));
     });
   }
   getDeeds(categoryId) {
@@ -49,7 +50,7 @@ class Commit extends React.Component {
     if (!this.state.gotUserLocation) {
       fetchRequest = `api/deeds.php?catid=${categoryId}&id=${this.props.userData.id}`;
     } else {
-      fetchRequest = `api/deeds.php?catid=${categoryId}&id=${this.props.userData.id}&lat=${this.state.currentLocation.lat}&long=${this.state.currentLocation.lat}`;
+      fetchRequest = `api/deeds.php?catid=${categoryId}&id=${this.props.userData.id}&lat=${this.state.currentLocation.lat}&long=${this.state.currentLocation.lng}`;
     }
     fetch(fetchRequest)
       .then(response => response.json())
@@ -109,6 +110,19 @@ class Commit extends React.Component {
         openAlert({ message: 'You have already commited to this deed.', type: 'danger' });
       });
   }
+  generateMap() {
+    if (!this.state.gotUserLocation) {
+      return (
+        <div className="awaitingUserLocation">
+          AWAITING USERS LOCATION
+        </div>
+      );
+    } else {
+      return <Map
+        currentLocation={this.state.currentLocation}
+      />;
+    }
+  }
   generateDeed() {
     if (this.state.deedToDisplay) {
       return <Deed
@@ -141,6 +155,8 @@ class Commit extends React.Component {
         return this.generateDeedList();
       case 'deed':
         return this.generateDeed();
+      case 'map':
+        return this.generateMap();
     }
   }
   deedViewNavigation() {
