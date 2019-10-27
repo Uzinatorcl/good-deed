@@ -27,7 +27,7 @@ class Request extends React.Component {
       .catch(error => console.error(error));
   }
   sendRequestToServer(request) {
-    if (!request.headline || !request.summary || !request.zipcode) {
+    if (!request.headline || !request.summary || !request.zipcode || !request.latitude) {
       openAlert({ message: 'Your request has missing fields.', type: 'warning' });
       return;
     }

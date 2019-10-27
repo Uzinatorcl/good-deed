@@ -35,7 +35,7 @@ cursor: pointer;
   flex-direction: column;
 }
 .buttonContainer > * {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .dailyQuote {
   font-size: 150%;
@@ -202,7 +202,7 @@ margin: 20px;
   align-items: center;
   background-color: #0ec088;
   border-radius: 25px;
-  height: 490px;
+  height: 65vh;
   overflow: auto;
 }
 .deedList {
@@ -495,4 +495,86 @@ margin: 0;
   font-size: 2rem;
   width: 30%;
   height: 80%;
+}
+
+.deedNavigationHeader {
+  display: flex;
+  margin-top: 10px;
+}
+.deedNavigationHeader > * {
+  height: 6vh;
+  margin: 0 5px;
+}
+.deedListLocation {
+  width: 15vw;
+}
+
+.deedListButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+.deedListButtonContainer > * {
+  width: 30vh;
+  font-size: 2rem;
+  height: 6vh;
+}
+.awaitingUserLocation {
+  display: flex;
+  height: 77vh;
+  text-align: center;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+.deedMarker {
+  background-image: url('images/markers/deed-marker.png');
+}
+.userMarker {
+  background-image: url('images/markers/user-marker.png');
+}
+.deedMarker, .userMarker {
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.markerDeed {
+  width: 150px;
+  height: 200px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+}
+.markerImage {
+  width: 30%;
+  height: 30%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.markerDeedInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+.markerHeadline {
+  font-weight: bold;
+  text-align: center;
+  font-size: .8rem;
+}
+.markerSummary {
+  margin-top: 5px;
+  overflow: auto;
+}
+.markerButton {
+  font-size: 0.9rem;
+  height: 2vh;
+  width: 60%;
+  margin-top: 5px;
+  padding:0;
 }
