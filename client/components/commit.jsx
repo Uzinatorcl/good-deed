@@ -120,6 +120,7 @@ class Commit extends React.Component {
     } else {
       return <Map
         currentLocation={this.state.currentLocation}
+        deeds={this.state.deedList}
       />;
     }
   }

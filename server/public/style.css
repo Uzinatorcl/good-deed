@@ -526,3 +526,15 @@ margin: 0;
   justify-content: center;
   align-items: center;
 }
+.deedMarker {
+  background-image: url('images/markers/deed-marker.png');
+}
+.userMarker {
+  background-image: url('images/markers/user-marker.png');
+}
+.deedMarker, .userMarker {
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
