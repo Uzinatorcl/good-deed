@@ -3,9 +3,6 @@ import apiKeys from './apikeys';
 import DeedMarker from './deed-marker';
 import GoogleMapReact from 'google-map-react';
 class Map extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   renderMarkers() {
     return (
       this.props.deeds.map(deed => {
@@ -15,31 +12,32 @@ class Map extends React.Component {
             deed={deed}
             lat={deed.latitude}
             lng={deed.longitude}
-            class={'deedMarker'}
+            commitToDeed={this.props.commitToDeed}
           />
         );
       })
     );
   }
   render() {
-    console.log(this.props.deeds);
     return (
-      <div style={{ height: '77vh', width: '100%' }}>
+      <div style={{ height: '73vh', width: '100%', margin: '10px 0' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: apiKeys.maps }}
           defaultCenter={this.props.currentLocation}
           defaultZoom={12}
         >
-          <DeedMarker
-            lat={this.props.currentLocation.lat}
-            lng={this.props.currentLocation.lng}
-            class={'userMarker'}
-          />
+          <UserMarker {...this.props.currentLocation}/>
           {this.renderMarkers()}
         </GoogleMapReact>
       </div>
     );
   }
+}
+
+function UserMarker(props) {
+  return (
+    <div className="userMarker"></div>
+  );
 }
 
 export default Map;
