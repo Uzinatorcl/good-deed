@@ -6,7 +6,7 @@ class ReviewModal extends React.Component {
   render() {
     const { image_url, username, category_name, rating, review_message } = this.props.review;
     return (
-      <div className={'reviewModalContainer'}>
+      <div className="reviewModalContainer">
         <div className="reviewModalBackground"/>
         <div className="review-modal">
           <div onClick ={this.props.hide}className="fas fa-times closeReviewModal"/>

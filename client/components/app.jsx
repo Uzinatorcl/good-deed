@@ -20,6 +20,7 @@ class App extends React.Component {
     this.updateProfileImage = this.updateProfileImage.bind(this);
     this.updateAccountInformation = this.updateAccountInformation.bind(this);
     this.logout = this.logout.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
   setView(newView) {
     this.setState({ view: newView });
@@ -63,9 +64,26 @@ class App extends React.Component {
         openAlert({ message: 'Invalid Username or Password', type: 'danger' });
       });
   }
+  createUser(userData) {
+    if (!userData.username || !userData.password || !userData.email || !userData.firstname || !userData.lastname || !userData.zipcode) {
+      openAlert({ message: 'You have empty fields', type: 'danger' });
+      return;
+    }
+    fetch('api/login.php', {
+      method: 'PATCH',
+      body: JSON.stringify(userData)
+    })
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an error uploading userdata to the database')))
+      .then(() => {
+        openAlert({ message: 'You have successfully registered!', type: 'success' });
+      })
+      .catch(() => {
+        openAlert({ message: 'This Username already exists.', type: 'danger' });
+      });
+  }
   display() {
     if (this.state.view === 'login') {
-      return <Login getUserData={this.getUserData} />;
+      return <Login getUserData={this.getUserData} createUser={this.createUser} />;
     }
     if (this.state.view === 'dashboard') {
       return <Dashboard userData ={this.state.userData} setView={this.setView}/>;
