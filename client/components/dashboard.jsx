@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './header';
 import Review from './reviews';
-import DashFooter from './dash-footer';
+import ReviewModal from './review-modal';
+import DashFooter2 from './dash-footer-2';
 import StarRatingComponent from 'react-star-rating-component';
 
 class Dashboard extends React.Component {
@@ -45,6 +46,8 @@ class Dashboard extends React.Component {
     const totalReviews = this.state.userReviews.length;
     const reviewsToDisplay = this.displayReviews();
     return (
+      <>
+      <ReviewModal/>
       <div className="container">
         <Header/>
         <div className="userProfile">
@@ -69,8 +72,9 @@ class Dashboard extends React.Component {
             {reviewsToDisplay}
           </div>
         </div>
-        <DashFooter setView={this.props.setView}/>
+        <DashFooter2 setView={this.props.setView}/>
       </div>
+      </>
     );
   }
 }
