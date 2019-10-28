@@ -6,7 +6,8 @@ $userRequest = getBodyData();
 if($userRequest['username'] === '') {
   exit('Username cannot be blank');
 }
-$query = "SELECT `user_id` AS id, `username`, `email`,`firstname`, `lastname`, `zipcode`, `image_url` FROM `users` WHERE `username` = '$userRequest[username]'";
+$username = addslashes($userRequest['username']);
+$query = "SELECT `user_id` AS id, `username`, `email`,`firstname`, `lastname`, `zipcode`, `image_url` FROM `users` WHERE `username` = '$username'";
 $result = mysqli_query($conn, $query);
 
 if(!$result) {

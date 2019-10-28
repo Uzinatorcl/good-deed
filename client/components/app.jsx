@@ -65,7 +65,21 @@ class App extends React.Component {
       });
   }
   createUser(userData) {
-    console.log(userData);
+    if (!userData.username || !userData.password || !userData.email || !userData.firstname || !userData.lastname || !userData.zipcode) {
+      openAlert({ message: 'You have empty fields', type: 'danger' });
+      return;
+    }
+    fetch('api/login.php', {
+      method: 'PATCH',
+      body: JSON.stringify(userData)
+    })
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an error uploading userdata to the database')))
+      .then(() => {
+        openAlert({ message: 'You have successfully registered!', type: 'success' });
+      })
+      .catch(() => {
+        openAlert({ message: 'This Username already exists.', type: 'danger' });
+      });
   }
   display() {
     if (this.state.view === 'login') {
