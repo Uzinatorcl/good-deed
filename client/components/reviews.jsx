@@ -4,7 +4,7 @@ import StarRatingComponent from 'react-star-rating-component';
 function Review(props) {
   return (
     <div className="reviewersProfile">
-      <div className="row mx-auto align-items-center justify-content-center">
+      <div onClick={() => props.setReview(props.id)} className="row mx-auto align-items-center justify-content-center">
         <div className="col-9 reviewerInfo">
           <div className="reviewerUsername">{props.username}</div>
           <div className="categoryName">{props.category}</div>

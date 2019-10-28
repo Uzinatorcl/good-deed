@@ -10,8 +10,11 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       view: 'commit',
-      userReviews: []
+      userReviews: [],
+      reviewToDisplay: null
     };
+    this.setReviewToDisplay = this.setReviewToDisplay.bind(this);
+    this.hideReviewModal = this.hideReviewModal.bind(this);
   }
   componentDidMount() {
     fetch(`api/get-review.php?id=${this.props.userData.id}`)
@@ -26,8 +29,15 @@ class Dashboard extends React.Component {
       return 'No reviews';
     }
     return this.state.userReviews.map(data => {
-      return <Review key={data.review_id} id={data.review_id} username={data.username} category={data.category_name} rating={data.rating} image={data.image_url} />;
+      return <Review key={data.review_id} setReview={this.setReviewToDisplay} id={data.review_id} username={data.username} category={data.category_name} rating={data.rating} image={data.image_url} />;
     });
+  }
+  setReviewToDisplay(id) {
+    const review = this.state.userReviews.find(review => review.review_id === id);
+    this.setState({ reviewToDisplay: review });
+  }
+  hideReviewModal() {
+    this.setState({ reviewToDisplay: null });
   }
   getReviewStars() {
     const totalReviews = this.state.userReviews.length;
@@ -45,9 +55,14 @@ class Dashboard extends React.Component {
     const reviewStars = this.getReviewStars();
     const totalReviews = this.state.userReviews.length;
     const reviewsToDisplay = this.displayReviews();
+    const mountModal = this.state.reviewToDisplay
+      ? <ReviewModal
+        review={this.state.reviewToDisplay}
+        hide={this.hideReviewModal} />
+      : '';
     return (
       <>
-      <ReviewModal/>
+      {mountModal}
       <div className="container">
         <Header/>
         <div className="userProfile">
