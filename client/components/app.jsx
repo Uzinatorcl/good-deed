@@ -20,6 +20,7 @@ class App extends React.Component {
     this.updateProfileImage = this.updateProfileImage.bind(this);
     this.updateAccountInformation = this.updateAccountInformation.bind(this);
     this.logout = this.logout.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
   setView(newView) {
     this.setState({ view: newView });
@@ -63,9 +64,12 @@ class App extends React.Component {
         openAlert({ message: 'Invalid Username or Password', type: 'danger' });
       });
   }
+  createUser(userData) {
+    console.log(userData);
+  }
   display() {
     if (this.state.view === 'login') {
-      return <Login getUserData={this.getUserData} />;
+      return <Login getUserData={this.getUserData} createUser={this.createUser} />;
     }
     if (this.state.view === 'dashboard') {
       return <Dashboard userData ={this.state.userData} setView={this.setView}/>;

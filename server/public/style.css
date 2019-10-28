@@ -40,18 +40,19 @@ cursor: pointer;
 .dailyQuote {
   font-size: 150%;
 }
-.loginForm {
-  background-color: #0ec088;
-  border-radius: 25px;
-}
-.loginFormContainer {
+.loginFormContainer, .signUpFormContainer {
   display: flex;
   justify-content: center;
 }
-.loginForm {
+.signUpFormContainer {
+  margin-top: 10px;
+}
+.loginForm, .signUpForm {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  background-color: #0ec088;
+  border-radius: 25px;
 }
 .loginFormBox {
   text-align: center;
@@ -63,6 +64,32 @@ background-color: #C4C4C4;
 color: white;
 font-size: 40px;
 margin: 20px;
+}
+.signUpForm {
+  height: 63vh;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 94%;
+}
+.signUpFormBox {
+  height: 10%;
+  width: 90%;
+  border-radius: 55px;
+  background-color: #C4C4C4;
+  border-style: none;
+  font-size: 1.6rem;
+  text-align: center;
+}
+.signupButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  height: 20vh;
+  width: 100%;
+  align-items: flex-end;
+}
+.signupButtonContainer > * {
+  font-size: 2rem;
+  width: 42%;
 }
 .mainHeader {
   background-color: #0ec088;
