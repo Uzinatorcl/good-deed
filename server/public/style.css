@@ -607,3 +607,79 @@ margin: 0;
   font-size: 2.6rem;
   background-origin: content-box;
 }
+.reviewModalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+}
+.reviewModalBackground {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 2;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  opacity: 0.8;
+  background-color: #C4C4C4;
+}
+.review-modal {
+  position: fixed;
+  z-index: 3;
+  width: 80%;
+  height: 50vh;
+  border: 2px solid black;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 5px 10px #88888865;
+  padding: 10px;
+}
+.reviewModalUserImage {
+  width: 30%;
+  height: 10vh;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.closeReviewModal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 2rem;
+  opacity: .8;
+}
+.reviewModalUsername {
+  font-size: 1.6rem;
+  font-family: 'DecovarRegular24TermA';
+   font-weight: bold;
+   font-style: normal;
+   margin-top: 5px;
+}
+.reviewModalCategory {
+  margin-top: 3px;
+  color: black;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+.reviewModalSummary {
+  padding: 10px;
+  height: 17vh;
+  font-size: 1.2rem;
+  overflow: auto;
+}
+.reviewModalRating {
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+}
