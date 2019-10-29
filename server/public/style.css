@@ -557,6 +557,7 @@ margin: 0;
 .deedNavigationHeader > * {
   height: 6vh;
   margin: 0 5px;
+  font-size: 1.7rem;
 }
 .deedListLocation {
   width: 15vw;
