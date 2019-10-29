@@ -105,29 +105,45 @@ margin: 20px;
   font-size: 2.8rem;
   color: white;
 }
+.userProfileContainer {
+  width: 100%;
+  height: 12vh;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
 .userProfile {
-  width: 328px;
-  height: 106px;
-  margin: 10px 23px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22rem;
   border-radius: 25px;
   background-color: #0ec088;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 .userInfo {
   text-align: center;
   font-family: 'Asap', sans-serif;
   line-height: 24px;
+  width: 75%;
+}
+.userProfileImageContainer {
+  width: 25%;
+}
+.userImage {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid white;
 }
 .userName {
-  font-size: 32px;
+  font-size: 2rem;
 }
 .totalReviews {
   font-size: 18px;
   color: white;
 }
-.userImage ,
 .reviewerImage,
 .checkCommitsImage,
 .checkCompleteImage,
@@ -580,7 +596,6 @@ margin: 0;
 }
 .markerDeed {
   width: 150px;
-  height: 200px;
   background-color: white;
   border: 2px solid black;
   border-radius: 20px;
@@ -595,9 +610,8 @@ margin: 0;
   height: 4rem;
   border-radius: 50%;
   border:2px solid white;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  object-fit: cover;
+  object-position: center;
 }
 .markerDeedInfo {
   display: flex;
@@ -612,6 +626,7 @@ margin: 0;
 .markerSummary {
   margin-top: 5px;
   overflow: auto;
+  font-size: .8rem;
 }
 .markerButton {
   font-size: 0.9rem;
