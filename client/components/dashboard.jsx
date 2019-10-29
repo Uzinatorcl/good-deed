@@ -65,16 +65,16 @@ class Dashboard extends React.Component {
       {mountModal}
       <div className="container">
         <Header/>
-        <div className="userProfile">
-          <div className="row mx-auto align-items-center justify-content-center">
-            <div className="col-9 userInfo">
+        <div className="userProfileContainer">
+          <div className="userProfile">
+            <div className="userInfo">
               <div className="userName">{this.props.userData.username}</div>
               <div className="totalReviews"><span>{totalReviews}</span> Reviews</div>
               <div className="currentRating">
                 <StarRatingComponent name="rating" editing={false} value={reviewStars} />
               </div>
             </div>
-            <div className="col-3">
+            <div className="userProfileImageContainer">
               <img className="userImage"src={this.props.userData.image_url} alt="your profile image"/>
             </div>
           </div>
