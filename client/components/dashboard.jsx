@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './header';
 import Review from './reviews';
-import DashFooter from './dash-footer';
+import ReviewModal from './review-modal';
+import DashFooter2 from './dash-footer-2';
 import StarRatingComponent from 'react-star-rating-component';
 
 class Dashboard extends React.Component {
@@ -9,8 +10,11 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       view: 'commit',
-      userReviews: []
+      userReviews: [],
+      reviewToDisplay: null
     };
+    this.setReviewToDisplay = this.setReviewToDisplay.bind(this);
+    this.hideReviewModal = this.hideReviewModal.bind(this);
   }
   componentDidMount() {
     fetch(`api/get-review.php?id=${this.props.userData.id}`)
@@ -25,8 +29,15 @@ class Dashboard extends React.Component {
       return 'No reviews';
     }
     return this.state.userReviews.map(data => {
-      return <Review key={data.review_id} id={data.review_id} username={data.username} category={data.category_name} rating={data.rating} image={data.image_url} />;
+      return <Review key={data.review_id} setReview={this.setReviewToDisplay} id={data.review_id} username={data.username} category={data.category_name} rating={data.rating} image={data.image_url} />;
     });
+  }
+  setReviewToDisplay(id) {
+    const review = this.state.userReviews.find(review => review.review_id === id);
+    this.setState({ reviewToDisplay: review });
+  }
+  hideReviewModal() {
+    this.setState({ reviewToDisplay: null });
   }
   getReviewStars() {
     const totalReviews = this.state.userReviews.length;
@@ -44,19 +55,26 @@ class Dashboard extends React.Component {
     const reviewStars = this.getReviewStars();
     const totalReviews = this.state.userReviews.length;
     const reviewsToDisplay = this.displayReviews();
+    const mountModal = this.state.reviewToDisplay
+      ? <ReviewModal
+        review={this.state.reviewToDisplay}
+        hide={this.hideReviewModal} />
+      : '';
     return (
+      <>
+      {mountModal}
       <div className="container">
         <Header/>
-        <div className="userProfile">
-          <div className="row mx-auto align-items-center justify-content-center">
-            <div className="col-9 userInfo">
+        <div className="userProfileContainer">
+          <div className="userProfile">
+            <div className="userInfo">
               <div className="userName">{this.props.userData.username}</div>
               <div className="totalReviews"><span>{totalReviews}</span> Reviews</div>
               <div className="currentRating">
                 <StarRatingComponent name="rating" editing={false} value={reviewStars} />
               </div>
             </div>
-            <div className="col-3">
+            <div className="userProfileImageContainer">
               <img className="userImage"src={this.props.userData.image_url} alt="your profile image"/>
             </div>
           </div>
@@ -69,8 +87,9 @@ class Dashboard extends React.Component {
             {reviewsToDisplay}
           </div>
         </div>
-        <DashFooter setView={this.props.setView}/>
+        <DashFooter2 setView={this.props.setView}/>
       </div>
+      </>
     );
   }
 }

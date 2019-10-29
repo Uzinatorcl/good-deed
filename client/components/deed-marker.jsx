@@ -12,7 +12,7 @@ class DeedMarker extends React.Component {
     if (this.state.isClicked) {
       return (
         <div className="markerDeed">
-          <div className="markerImage" style={{ backgroundImage: `url(${image_url})` }}/>
+          <img className="markerImage" src={image_url}/>
           <div className="markerDeedInfo">
             <div className="markerHeadline">
               {this.props.deed.headline}
