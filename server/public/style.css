@@ -127,8 +127,19 @@ margin: 20px;
   font-size: 18px;
   color: white;
 }
-.userImage {
-  width: 58px;
+.userImage ,
+.reviewerImage,
+.checkCommitsImage,
+.checkCompleteImage,
+.chatMessageImage,
+.userImageSettings,
+.requesterImage{
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid white;
 }
 .heading {
   color: #0ec088;
@@ -154,9 +165,6 @@ margin: 20px;
   flex-direction: column;
   justify-content: center;
   margin: 5px 0;
-}
-.reviewerImage {
-  width: 44px;
 }
 .reviewerInfo {
   text-align: center;
@@ -245,7 +253,8 @@ margin: 20px;
   margin: 5px 0;
 }
 .requesterImage {
-  width: 44px;
+  width: 3.2rem;
+  height: 3.2rem;
 }
 .requestImageContainer {
   box-sizing: border-box;
@@ -410,9 +419,6 @@ margin: 0;
   font-size: 180%;
 }
 .checkCommitsImage, .checkCompleteImage , .chatMessageImage {
-  max-height:80%;
-  max-width: 80%;
-  object-fit: fill;
 }
 .checkRequestCompleteIcon {
   color: #0ec088;
@@ -456,7 +462,8 @@ margin: 0;
   margin-top: 20px;
 }
 .userImageSettings {
-  width: 15vh;
+  width: 8rem;
+  height: 8rem;
 }
 .updatePhotoButton {
   width: 100%;
@@ -584,9 +591,11 @@ margin: 0;
   padding: 6px;
 }
 .markerImage {
-  width: 30%;
-  height: 30%;
-  background-size: contain;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border:2px solid white;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -673,9 +682,11 @@ margin: 0;
   padding: 10px;
 }
 .reviewModalUserImage {
-  width: 30%;
-  height: 10vh;
-  background-size: contain;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border:2px solid white;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
