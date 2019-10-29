@@ -6,6 +6,7 @@ import CheckCommits from './check-commits';
 import Deed from './deed';
 import CompleteRequestUser from './check-complete-request';
 import LeaveReview from './leave-review';
+import RequestModal from './request-modal';
 import Alert, { openAlert } from 'simple-react-alert';
 import { confirmAlert } from 'react-confirm-alert';
 
@@ -18,7 +19,8 @@ class Check extends React.Component {
       userCommits: null,
       commitToDisplay: null,
       usersWhoCommitedToYourRequest: null,
-      userToSendReview: null
+      userToSendReview: null,
+      requestToDisplay: null
     };
     this.setCheckDisplay = this.setCheckDisplay.bind(this);
     this.setDeed = this.setDeed.bind(this);
@@ -27,6 +29,8 @@ class Check extends React.Component {
     this.setUserDataForRequest = this.setUserDataForRequest.bind(this);
     this.userReviewData = this.userReviewData.bind(this);
     this.submitReview = this.submitReview.bind(this);
+    this.setRequestToDisplay = this.setRequestToDisplay.bind(this);
+    this.hideRequestModal = this.hideRequestModal.bind(this);
   }
 
   setCheckDisplay(newView) {
@@ -140,6 +144,13 @@ class Check extends React.Component {
     const currentUserToReview = this.state.usersWhoCommitedToYourRequest.find(user => user.commit_id === id);
     this.setState({ userToSendReview: currentUserToReview });
   }
+  setRequestToDisplay(id) {
+    const request = this.state.userRequests.find(req => req.request_id === id);
+    this.setState({ requestToDisplay: request });
+  }
+  hideRequestModal() {
+    this.setState({ requestToDisplay: null });
+  }
   generateUsersRequests() {
     return (
       this.state.userRequests.map(request => {
@@ -147,6 +158,7 @@ class Check extends React.Component {
           key={request.request_id}
           requestId={request.request_id}
           headline ={request.headline}
+          setRequest={this.setRequestToDisplay}
           cancelCallback={this.cancelADeedRequest}
           completeCallback={this.setUserDataForRequest}
         />;
@@ -261,9 +273,16 @@ class Check extends React.Component {
   render() {
     const selected = this.selectedButton(this.state.view);
     const display = this.renderCheckDisplay();
+    const requestModal = this.state.requestToDisplay
+      ? <RequestModal
+        headline={this.state.requestToDisplay.headline}
+        summary={this.state.requestToDisplay.summary}
+        hide={this.hideRequestModal}/>
+      : '';
     return (
       <div className="container">
         <Alert />
+        {requestModal}
         <Header/>
         <div className="checkDeedButtonContainer">
           <button onClick={() => this.setCheckDisplay('requests')} className = {selected[0]}>REQUESTS</button>

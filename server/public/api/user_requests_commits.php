@@ -6,7 +6,7 @@ require_once('db_connection.php');
 
 $userId = intVal($_GET['id']);
 
-$requestsQuery = "SELECT `request_id`, `headline` FROM `requests` WHERE `completed` = 0 && `request_user_id` = $userId";
+$requestsQuery = "SELECT `request_id`, `headline`, `summary` FROM `requests` WHERE `completed` = 0 && `request_user_id` = $userId";
 
 $requestsResult = mysqli_query($conn, $requestsQuery);
 if (!$requestsResult) {
