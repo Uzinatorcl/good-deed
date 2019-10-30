@@ -3,8 +3,8 @@ import React from 'react';
 function MessageChats(props) {
   if (props.yourUserId === props.sendingUserId) {
     return (
-      <div className="chatMessage">
-        <div className="chatMessageText">
+      <div className="chatMessageContainer">
+        <div className="chatMessageTextYou">
           {props.message}
         </div>
         <div className="chatMessageImageContainer">
@@ -14,11 +14,11 @@ function MessageChats(props) {
     );
   } else {
     return (
-      <div className="chatMessage">
+      <div className="chatMessageContainer">
         <div className="chatMessageImageContainer">
           <img className="chatMessageImage" src={props.image} alt="your profile image" />
         </div>
-        <div className="chatMessageText">
+        <div className="chatMessageTextOther">
           {props.message}
         </div>
       </div>

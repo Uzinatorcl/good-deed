@@ -64,7 +64,7 @@ class Messages extends React.Component {
         sendMessageData.sending_user_image_url = this.props.userData.image_url;
         const messageCopy = this.state.messages.map(message => Object.assign({}, message));
         messageCopy.push(sendMessageData);
-        this.setState({ messages: messageCopy }, () => { this.getMessagesToRender(commit_id); });
+        this.setState({ messages: messageCopy, messageBody: '' }, () => { this.getMessagesToRender(commit_id); });
       })
       .catch(() => {
         openAlert({ message: 'There was an issue sending your message', type: 'danger' });
@@ -134,12 +134,15 @@ class Messages extends React.Component {
   render() {
     const display = this.messagesDisplay();
     const messageInteraction = this.messageInteraction();
+    const height = this.state.view === 'messageList'
+      ? '75vh'
+      : '65vh';
     return (
       <>
       <Alert/>
       <Header/>
       <div className="heading">MESSAGES</div>
-      <div className="messagesContainer" ref={this.messagesContainerRef}>
+      <div className="messagesContainer" ref={this.messagesContainerRef} style={{ height: height }}>
         {display}
       </div>
       {messageInteraction}
