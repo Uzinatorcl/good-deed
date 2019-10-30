@@ -13,6 +13,8 @@ width: 189px;
 height: 77px;
 border-style: none;
 cursor: pointer;
+font-family: inherit;
+
 }
 .container {
   padding: 0
@@ -25,6 +27,7 @@ cursor: pointer;
   color: #0ec088;
   font-size: 400%;
   line-height: 79px;
+  font-weight: 400;
 }
 .loginContainer {
   text-align: center;
@@ -105,12 +108,16 @@ margin: 20px;
   font-size: 2.8rem;
   color: white;
 }
-.userProfileContainer {
+.userProfileContainer, .reviewersProfileContainer {
   width: 100%;
   height: 12vh;
   margin-top: 10px;
   display: flex;
   justify-content: center;
+}
+.reviewersProfileContainer {
+  margin-top: 3px;
+  height: 5.5rem;
 }
 .userProfile {
   display: flex;
@@ -120,14 +127,17 @@ margin: 20px;
   border-radius: 25px;
   background-color: #0ec088;
 }
-.userInfo {
+.userInfo, .reviewerInfo {
   text-align: center;
   font-family: 'Asap', sans-serif;
   line-height: 24px;
   width: 75%;
 }
-.userProfileImageContainer {
+.userProfileImageContainer, .reviewProfileImageContainer {
   width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .userName {
   font-size: 2rem;
@@ -164,21 +174,15 @@ margin: 20px;
   border-radius: 25px;
   height: 57vh;
   overflow: auto;
+  margin: 0 12px;
 }
 .reviewersProfile {
-  width: 291px;
-  height: 76px;
+  width: 18rem;
   background-color: #D5DDDA;
   border-radius: 25px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   margin: 5px 0;
-}
-.reviewerInfo {
-  text-align: center;
-  font-family: 'Asap', sans-serif;
-  line-height: 24px;
 }
 .ratingContainer {
   height: 28px;
@@ -234,6 +238,7 @@ margin: 20px;
 .mainFooter {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   height: 7vh;
   background-color: #0ec088;
@@ -398,8 +403,8 @@ margin: 0;
   height: 68vh;
   overflow: auto;
 }
-.checkRequest, .checkCommits, .checkComplete, .chatMessage {
-  width: 95%;
+.checkRequest, .checkCommits, .checkComplete {
+  width: 21rem;
   padding: 10px;
   background-color: #D5DDDA;
   border-radius: 25px;
@@ -408,6 +413,67 @@ margin: 0;
   justify-content: space-between;
   margin: 5px 0;
   text-align: center;
+}
+.chatMessageContainer {
+   width: 21rem;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  text-align: center;
+}
+.messagesContainer {
+  scroll-behavior: smooth
+}
+.chatMessageTextYou, .chatMessageTextOther {
+  width: 80%;
+  font-size: 120%;
+  text-align: left;
+  border-radius: 25px;
+  padding: 15px;
+  height: 100%;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.chatMessageTextYou {
+  background-color: rgb(11, 243, 154);
+  color: white;
+  -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  margin-right: 15px;
+}
+.chatMessageTextYou:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid rgb(11, 243, 154);
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgb(11, 243, 154);
+    border-bottom: 10px solid transparent;
+    right: -6px;
+    transform: rotateZ(45deg);
+    top: 49px;
+}
+.chatMessageTextOther:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid #D5DDDA;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #D5DDDA;
+    border-bottom: 10px solid transparent;
+    left: -9px;
+    transform: rotateZ(45deg);
+    top: 49px;
+}
+.chatMessageTextOther {
+  background-color: #D5DDDA;
+  -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  margin-left: 15px;
 }
 .checkRequestHeadline, .checkCommitsHeadline, .checkCompleteUsername {
   width: 80%;
@@ -502,18 +568,11 @@ margin: 0;
 
 .messagesContainer {
   background-color: #0ec088;
-  height: 65vh;
   border-radius: 25px;
   overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.chatMessageText {
-  width: 80%;
-  font-size: 120%;
-  text-align: left;
 }
 .messageButtonContainer {
   display: flex;
