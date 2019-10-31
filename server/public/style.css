@@ -16,6 +16,9 @@ cursor: pointer;
 font-family: inherit;
 
 }
+.recentReviews {
+  height: 62vh;
+}
 .container {
   padding: 0
 }
