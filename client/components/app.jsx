@@ -7,7 +7,6 @@ import Check from './check';
 import Settings from './settings';
 import Messages from './messages';
 import Alert, { openAlert } from 'simple-react-alert';
-import Div100vh from 'react-div-100vh';
 
 class App extends React.Component {
   constructor(props) {
@@ -110,10 +109,10 @@ class App extends React.Component {
     const pageToRender = this.display();
 
     return (
-      <Div100vh>
-        <Alert/>
-        {pageToRender}
-      </Div100vh>
+      <>
+      <Alert/>
+      {pageToRender}
+      </>
     );
   }
 }
