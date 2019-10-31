@@ -2,5 +2,5 @@
 .vscode/
 .DS_Store
 node_modules/
-server/public/api/db_connection.php
+server/db_connection.php
 client/components/apikeys.js
