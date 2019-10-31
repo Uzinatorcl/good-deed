@@ -1,7 +1,8 @@
 <?php
 require_once('functions.php');
 set_exception_handler('error_handler');
-require_once('db_connection.php');
+require_once('../../db_connection.php');
+
 
 $requestId = intval($_GET['request_id']);
 $query = "SELECT C.`commit_id`, C.`request_id`, U.`username`, U.`image_url`, U.`user_id`

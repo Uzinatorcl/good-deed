@@ -1,7 +1,7 @@
 <?php
 require_once('functions.php');
 set_exception_handler('error_handler');
-require_once('db_connection.php');
+require_once('../../db_connection.php');
 
 $query = 'SELECT R.`review_id`, R.`rating`, R.`review_message`, R.`sending_user_id`, R.`request_id`, U.`username`, U.`image_url`,
 (SELECT category_id FROM `requests` WHERE request_id = R.`request_id`) AS category,

@@ -2,7 +2,7 @@
 
 require_once('functions.php');
 set_exception_handler('commit_error_handler');
-require_once('db_connection.php');
+require_once('../../db_connection.php');
 
 $userCommitData = getBodyData();
 $requestId = $userCommitData['request_id'];
