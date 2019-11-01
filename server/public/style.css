@@ -242,7 +242,7 @@ margin: 20px;
   width: 90%;
 }
 .mainFooter {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -582,9 +582,14 @@ margin: 0;
   border-radius: 25px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  align-items: center;
+  margin: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+.messagesContainer > * {
+  width: 90%;
+  margin: 2px;
 }
 .messageButtonContainer {
   display: flex;
