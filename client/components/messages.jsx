@@ -4,6 +4,7 @@ import Footer from './footer';
 import CheckCommits from './check-commits';
 import MessageChats from './message-chats';
 import Alert, { openAlert } from 'simple-react-alert';
+import { clearInterval } from 'timers';
 
 class Messages extends React.Component {
   constructor(props) {
@@ -14,12 +15,15 @@ class Messages extends React.Component {
       messages: null,
       view: 'messageList',
       currentMessages: null,
-      messageBody: ''
+      messageBody: '',
+      messagesInterval: null,
+      currentMessageInterval: null
     };
     this.changeView = this.changeView.bind(this);
     this.getMessagesToRender = this.getMessagesToRender.bind(this);
     this.trackMessage = this.trackMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
+    this.fetchMessages = this.fetchMessages.bind(this);
   }
 
   changeView(newView) {
@@ -27,6 +31,9 @@ class Messages extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchMessages();
+  }
+  fetchMessages() {
     fetch(`api/messages_commits.php?id=${this.props.userData.id}`)
       .then(response => response.ok ? response.json() : Promise.reject(new Error('There was an error retrieving users message data')))
       .then(data => {
