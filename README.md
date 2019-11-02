@@ -38,7 +38,7 @@ preview in iPhone X for optimal viewing
 
 ## Preview
 
-![Good Deed](images/sgt-react.gif)
+![Good Deed](preview.gif)
 
 
 ## Development
