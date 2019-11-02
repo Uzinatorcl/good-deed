@@ -47,6 +47,8 @@ preview in iPhone X for optimal viewing
 
 - NPM 6 or higher
 - MySQL 7 or higher
+- Google Maps Javascript API Key
+- Google Maps Geocoding API Key
 
 #### Getting Started
 
