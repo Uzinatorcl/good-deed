@@ -18,6 +18,10 @@ Try the application live at [https://gooddeed.uzairashraf.dev/](https://gooddeed
 
 To login use the username ```dantheman``` with no password
 
+ctrl + shift + i to open dev tools
+
+preview in iPhone X for optimal viewing
+
 ## Features
 
 - User can request deeds they need done
