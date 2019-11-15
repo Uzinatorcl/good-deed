@@ -808,3 +808,29 @@ margin: 0;
   font-size: 2rem;
   text-align: center;
 }
+
+@media(min-width: 1200px) {
+  .loginContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .loginContainer > * {
+    margin-top: 3rem;
+  }
+  .loginHeader {
+    display: flex;
+    justify-content: center;
+  }
+  .loginHeader > * {
+    margin: 0 5px 0;
+  }
+  .buttonContainer {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .buttonContainer > * {
+    margin: 0 5px 0;
+  }
+}
