@@ -858,4 +858,8 @@ margin: 0;
   .deedList {
     margin: 5px;
   }
+  .messagesContainer > * {
+    width: 21rem;
+    margin: 5px;
+  }
 }
