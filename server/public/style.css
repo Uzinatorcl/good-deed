@@ -841,4 +841,13 @@ margin: 0;
     margin: 0 3px;
     width: initial;
   }
+  .categoryList {
+    flex-direction: initial;
+    flex-wrap: wrap;
+    justify-content: center
+  }
+  .category {
+    width: 32%;
+    margin: 5px;
+  }
 }
