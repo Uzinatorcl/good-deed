@@ -850,4 +850,12 @@ margin: 0;
     width: 32%;
     margin: 5px;
   }
+  .deedListContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .deedList {
+    margin: 5px;
+  }
 }
