@@ -833,4 +833,12 @@ margin: 0;
   .buttonContainer > * {
     margin: 0 5px 0;
   }
+  .reviewsContainer {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .reviewsContainer > * {
+    margin: 0 3px;
+    width: initial;
+  }
 }
