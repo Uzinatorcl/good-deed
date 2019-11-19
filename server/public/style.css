@@ -170,9 +170,6 @@ margin: 20px;
   margin-top: 10px;
 }
 .reviewsContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #0ec088;
   border-radius: 25px;
   height: 57vh;
@@ -807,4 +804,72 @@ margin: 0;
   width: 100%;
   font-size: 2rem;
   text-align: center;
+}
+
+@media(max-width: 640px) {
+  .mainFooter {
+    position: initial;
+    margin-top: 2px;
+  }
+  .messagesContainer {
+    display: initial;
+  }
+  .messagesContainer > * {
+    margin: 2px auto;
+  }
+}
+
+@media(min-width: 1200px) {
+  .loginContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .loginContainer > * {
+    margin-top: 3rem;
+  }
+  .loginHeader {
+    display: flex;
+    justify-content: center;
+  }
+  .loginHeader > * {
+    margin: 0 5px 0;
+  }
+  .buttonContainer {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .buttonContainer > * {
+    margin: 0 5px 0;
+  }
+  .reviewsContainer {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .reviewsContainer > * {
+    margin: 0 3px;
+    width: initial;
+  }
+  .categoryList {
+    flex-direction: initial;
+    flex-wrap: wrap;
+    justify-content: center
+  }
+  .category {
+    width: 32%;
+    margin: 5px;
+  }
+  .deedListContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .deedList {
+    margin: 5px;
+  }
+  .messagesContainer > * {
+    width: 21rem;
+    margin: 5px;
+  }
 }
